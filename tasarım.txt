@@ -1,0 +1,14 @@
+
+sınıf.hpp dosyaları soyut sınıf gibi tasarlanacak.
+
+sınıf.cpp dosyalarının içerisinde sınıf.hpp dosyasında bulunan bloksuz metotların gövdeleri yazılacaktır.
+
+
+
+
+
+
+
+
+
+
