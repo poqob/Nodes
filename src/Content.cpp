@@ -34,14 +34,16 @@ void Content::writingAllElements()
 // buradayız sıralama algoritması yazılacak :dddd
 void Content::putInOrder()
 {
-    double tmp = 0;
-    double enKucuk = contentAvarageCalculator(YoneticiListesi->elementAt(0));
     // yonetici listesi düzeyinde satır listelerinin ayrı ayrı ortalama hesabı.
     for (int i = 0; i < YoneticiListesi->Count(); i++)
     {
         // cout << contentAvarageCalculator(YoneticiListesi->elementAt(i)) << endl;
+        // Satir listesini kendi arasinda kucukten buyuge siralar.
+        swap(YoneticiListesi->elementAt(i));
+        cout << *YoneticiListesi->elementAt(i) << endl;
     }
-    swap(YoneticiListesi->elementAt(1));
+
+    // cout << *YoneticiListesi->elementAt(3) << endl;
 }
 
 // satır listesi düzeyinde liste içeriklerinin ortalama hesabı
@@ -66,13 +68,12 @@ void Content::swap(DoublyLinkedList<int> *satir)
         for (int j = 0; j < n - i; j++)
         {
             // cout << satir->elementAt(j) << " " << satir->elementAt(j + 1) << endl;
-            if (satir->elementAt(j) < satir->elementAt(j + 1))
+            if (satir->elementAt(j) > satir->elementAt(j + 1))
             {
                 satir->swap(j, j + 1);
             }
         }
     }
-    cout << *satir << endl;
 }
 // TODO: order yönetici listesi by avarage of its contents.
 // only last one problem. avarage calculation done.

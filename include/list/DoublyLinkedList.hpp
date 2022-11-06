@@ -135,24 +135,23 @@ public:
 			itr = tmp;
 		}
 	}
-	// burada kaldık.
+	// siralama metodu-kucukten buyuge
 	void swap(int index1, int index2)
 	{
-		if (index1 < 0 || index1 >= size)
+		if (index1 + 1 < 0 || index1 >= size)
 			throw "No Such Element";
-		if (index2 < 0 || index2 >= size)
+		if (index2 + 1 < 0 || index2 >= size)
 			throw "No Such Element";
-		Node<Object> *tmp;
-		Node<Object> *prv1 = FindPreviousByPosition(index1);
-		Node<Object> *prv2 = FindPreviousByPosition(index2);
-		tmp = prv1;
-		prv1->next = prv2->next;
-		if (prv2->next != NULL)
-		{
-			tmp = prv2->next->prev
-		}
+		Node<Object> *tmp = new Node<Object>(0);
 
-		/*burada liste son elemanı için ufak bir problem var*/
+		Node<Object> *crnt1 = FindPreviousByPosition(index1 + 1);
+		Node<Object> *crnt2 = FindPreviousByPosition(index2 + 1);
+		// cout << crnt1->data << " " << crnt2->data << endl;
+		tmp->data = crnt1->data;
+		crnt1->data = crnt2->data;
+		crnt2->data = tmp->data;
+		// cout << crnt1->data << " " << crnt2->data << endl;
+		delete tmp, crnt1, crnt2;
 	}
 	const Object &elementAt(int index)
 	{
