@@ -3,6 +3,13 @@
 #include "../include/other/Content.hpp"
 using namespace std;
 
+Converter::Converter()
+{
+}
+
+Converter::~Converter()
+{
+}
 void Converter::rowIntParser(string row, DoublyLinkedList<int> *SatirListesi)
 {
     int firstSpaceLoc = 0;

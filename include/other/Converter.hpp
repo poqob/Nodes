@@ -13,17 +13,9 @@ private:
     string message;
 
 public:
-    Converter(/* args */);
+    Converter();
     ~Converter();
     void rowIntParser(string, DoublyLinkedList<int> *);
 };
-
-Converter::Converter(/* args */)
-{
-}
-
-Converter::~Converter()
-{
-}
 
 #endif // CONVERTER

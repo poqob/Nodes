@@ -10,17 +10,4 @@ public:
     ~Content();
 };
 
-Content::Content(/* args */)
-{
-    YoneticiListesi = new DoublyLinkedList<DoublyLinkedList<int>>();
-    SatirListesi = new DoublyLinkedList<int>();
-}
-
-Content::~Content()
-{
-    delete YoneticiListesi;
-    delete SatirListesi;
-    delete this;
-}
-
 #endif // CONTENT
