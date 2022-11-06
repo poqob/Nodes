@@ -12,7 +12,7 @@ int main()
     converter->readingFromFile(content);
     // cout << content->contentAvarageCalculator(content->YoneticiListesi->elementAt(24)) << endl;
     //  content->writingAllElements();
-    content->putInOrder(content->YoneticiListesi);
+    content->putInOrder();
     content->~Content();
     delete content;
     delete converter;

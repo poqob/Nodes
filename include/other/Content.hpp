@@ -10,7 +10,7 @@ public:
     ~Content();
     void nextRow();
     void writingAllElements();
-    void putInOrder(DoublyLinkedList<DoublyLinkedList<int> *> *);
+    void putInOrder();
     double contentAvarageCalculator(DoublyLinkedList<int> *);
 };
 

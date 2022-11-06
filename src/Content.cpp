@@ -31,15 +31,30 @@ void Content::writingAllElements()
         cout << *YoneticiListesi->elementAt(i) << endl;
     }
 }
-
-void Content::putInOrder(DoublyLinkedList<DoublyLinkedList<int> *> *yoneticiListesi)
+// buradayız sıralama algoritması yazılacak :dddd
+void Content::putInOrder()
 {
-    double enKucuk = 0;
+    double tmp = 0;
+    double enKucuk = contentAvarageCalculator(YoneticiListesi->elementAt(0));
+    DoublyLinkedList<int> *sl = new DoublyLinkedList<int>();
     // yonetici listesi düzeyinde satır listelerinin ayrı ayrı ortalama hesabı.
-    for (int i = 0; i < yoneticiListesi->Count(); i++)
+    for (int i = 0; i < YoneticiListesi->Count(); i++)
     {
-        cout << contentAvarageCalculator(yoneticiListesi->elementAt(i)) << endl;
+        tmp = contentAvarageCalculator(YoneticiListesi->elementAt(i));
+        if (tmp < enKucuk)
+        {
+            enKucuk = tmp;
+            sl = YoneticiListesi->elementAt(i);
+            YoneticiListesi->removeAt(i);
+            YoneticiListesi->insert(0, sl);
+        }
     }
+    for (int i = 0; i < YoneticiListesi->Count(); i++)
+    {
+        cout << contentAvarageCalculator(YoneticiListesi->elementAt(i)) << endl;
+    }
+    sl->~DoublyLinkedList();
+    delete sl;
 }
 // satır listesi düzeyinde liste içeriklerinin ortalama hesabı
 double Content::contentAvarageCalculator(DoublyLinkedList<int> *satirListesi)
