@@ -9,7 +9,9 @@ public:
     Content();
     ~Content();
     void nextRow();
-    void readingAllElements();
+    void writingAllElements();
+    void putInOrder(DoublyLinkedList<DoublyLinkedList<int> *> *);
+    double contentAvarageCalculator(DoublyLinkedList<int> *);
 };
 
 #endif // CONTENT

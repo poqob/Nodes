@@ -24,10 +24,35 @@ void Content::nextRow()
     SatirListesi = new DoublyLinkedList<int>();
 }
 
-void Content::readingAllElements()
+void Content::writingAllElements()
 {
     for (int i = 0; i < YoneticiListesi->Count(); i++)
     {
         cout << *YoneticiListesi->elementAt(i) << endl;
     }
 }
+
+void Content::putInOrder(DoublyLinkedList<DoublyLinkedList<int> *> *yoneticiListesi)
+{
+    double enKucuk = 0;
+    // yonetici listesi düzeyinde satır listelerinin ayrı ayrı ortalama hesabı.
+    for (int i = 0; i < yoneticiListesi->Count(); i++)
+    {
+        cout << contentAvarageCalculator(yoneticiListesi->elementAt(i)) << endl;
+    }
+}
+// satır listesi düzeyinde liste içeriklerinin ortalama hesabı
+double Content::contentAvarageCalculator(DoublyLinkedList<int> *satirListesi)
+{
+    double avarage = 0;
+    for (int i = 0; i < satirListesi->Count(); i++)
+    {
+        avarage += satirListesi->elementAt(i);
+    }
+
+    return avarage / satirListesi->Count();
+}
+
+// TODO: order yönetici listesi by avarage of its contents.
+// only last one problem. avarage calculation done.
+// the problem is ordering.
