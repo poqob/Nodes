@@ -1,6 +1,4 @@
 #include "../include/other/Converter.hpp"
-#include "string.h"
-#include "../include/other/Content.hpp"
 using namespace std;
 
 Converter::Converter()
@@ -9,6 +7,7 @@ Converter::Converter()
 
 Converter::~Converter()
 {
+    delete this;
 }
 void Converter::rowIntParser(string row, DoublyLinkedList<int> *SatirListesi)
 {
@@ -20,15 +19,39 @@ void Converter::rowIntParser(string row, DoublyLinkedList<int> *SatirListesi)
     {
         do
         {
-            firstSpaceLoc = row.find(' ', firstNumLoc);
-            till = firstSpaceLoc - firstNumLoc + 1;
-            SatirListesi->add(stoi(row.substr(firstNumLoc, till)));
-            firstNumLoc = firstSpaceLoc + 1;
-        } while (row.find(' ', firstNumLoc) != -1);
-        SatirListesi->add(stoi(row.substr(firstNumLoc, till)));
+            if (row.find(' ', firstNumLoc) != string::npos)
+            {
+                firstSpaceLoc = row.find(' ', firstNumLoc);
+                till = firstSpaceLoc - firstNumLoc + 1;
+                SatirListesi->add(stoi(row.substr(firstNumLoc, till)));
+                firstNumLoc = firstSpaceLoc + 1;
+            }
+            else
+            {
+                SatirListesi->add(stoi(row.substr(firstNumLoc, row.length() - firstNumLoc)));
+                break;
+            }
+
+        } while (true);
     }
     catch (const std::exception &e)
     {
-        std::cerr << e.what() << '\n';
+        // std::cerr << e.what() << '\n';
     }
+}
+
+void Converter::readingFromFile(Content *content)
+{
+    string temp0;
+    fstream read;
+    // open products.txt file in read mode
+    read.open("..//data//veriler.txt", ios::in);
+    // sayıları dosyadan satır satır okumak.
+    while (getline(read, temp0))
+    {
+        temp0 = StringMethod::trim(temp0);
+        rowIntParser(temp0, content->SatirListesi);
+        content->nextRow();
+    }
+    read.close();
 }

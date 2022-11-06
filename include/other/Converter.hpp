@@ -2,7 +2,10 @@
 #define CONVERTER
 
 #include <iostream>
+#include <fstream>
 #include <string>
+#include "Content.hpp"
+#include "StringMethod.hpp"
 #include "../list/DoublyLinkedList.hpp"
 
 using namespace std;
@@ -15,6 +18,7 @@ private:
 public:
     Converter();
     ~Converter();
+    void readingFromFile(Content *);
     void rowIntParser(string, DoublyLinkedList<int> *);
 };
 

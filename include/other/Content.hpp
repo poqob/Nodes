@@ -4,10 +4,12 @@
 class Content
 {
 public:
-    DoublyLinkedList<DoublyLinkedList<int>> *YoneticiListesi;
+    DoublyLinkedList<DoublyLinkedList<int> *> *YoneticiListesi;
     DoublyLinkedList<int> *SatirListesi;
     Content();
     ~Content();
+    void nextRow();
+    void readingAllElements();
 };
 
 #endif // CONTENT
