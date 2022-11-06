@@ -1,0 +1,29 @@
+üst bar:
+*konum-bilgisi___________________________rotasyon oku(--> ~ <--)
+
+*yönetici liste düğüm adresi                            (bir sayfada en fazla 8 adet satır listesi gösterilsin)
+*---------------------------
+*|yönetici liste önceki düğümün adresi|
+*---------------------------
+*|Satır listesi ortalaması|
+*---------------------------
+*|yönetici liste sonraki düğüm adresi|
+*---------------------------
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^                            (a-d ile taşınabilir bar)
+
+
+*Satır listesi düğüm adresi                             (a-d ile taşınabilir)
+*---------------------------
+*|düğümün verisi|
+*---------------------------
+*|sonraki düğümün adresi|
+*---------------------------
+
+
+*Satır listesi düğüm adresi
+*---------------------------
+*|düğümün verisi|
+*---------------------------
+*|sonraki düğümün adresi|
+*---------------------------
