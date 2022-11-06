@@ -36,26 +36,14 @@ void Content::putInOrder()
 {
     double tmp = 0;
     double enKucuk = contentAvarageCalculator(YoneticiListesi->elementAt(0));
-    DoublyLinkedList<int> *sl = new DoublyLinkedList<int>();
     // yonetici listesi düzeyinde satır listelerinin ayrı ayrı ortalama hesabı.
     for (int i = 0; i < YoneticiListesi->Count(); i++)
     {
-        tmp = contentAvarageCalculator(YoneticiListesi->elementAt(i));
-        if (tmp < enKucuk)
-        {
-            enKucuk = tmp;
-            sl = YoneticiListesi->elementAt(i);
-            YoneticiListesi->removeAt(i);
-            YoneticiListesi->insert(0, sl);
-        }
+        // cout << contentAvarageCalculator(YoneticiListesi->elementAt(i)) << endl;
     }
-    for (int i = 0; i < YoneticiListesi->Count(); i++)
-    {
-        cout << contentAvarageCalculator(YoneticiListesi->elementAt(i)) << endl;
-    }
-    sl->~DoublyLinkedList();
-    delete sl;
+    swap(YoneticiListesi->elementAt(1));
 }
+
 // satır listesi düzeyinde liste içeriklerinin ortalama hesabı
 double Content::contentAvarageCalculator(DoublyLinkedList<int> *satirListesi)
 {
@@ -68,6 +56,24 @@ double Content::contentAvarageCalculator(DoublyLinkedList<int> *satirListesi)
     return avarage / satirListesi->Count();
 }
 
+void Content::swap(DoublyLinkedList<int> *satir)
+{
+    // i kaçıncı periyotta olduğumuzu ifade ediyor.
+    // j ise satır içerisinde gezdiğimiz elemanları.
+    int n = satir->Count() - 1;
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < n - i; j++)
+        {
+            // cout << satir->elementAt(j) << " " << satir->elementAt(j + 1) << endl;
+            if (satir->elementAt(j) < satir->elementAt(j + 1))
+            {
+                satir->swap(j, j + 1);
+            }
+        }
+    }
+    cout << *satir << endl;
+}
 // TODO: order yönetici listesi by avarage of its contents.
 // only last one problem. avarage calculation done.
 // the problem is ordering.
