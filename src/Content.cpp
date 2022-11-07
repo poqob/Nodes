@@ -28,20 +28,22 @@ void Content::writingAllElements()
 {
     for (int i = 0; i < YoneticiListesi->Count(); i++)
     {
-        cout << *YoneticiListesi->elementAt(i) << endl;
+        cout << *YoneticiListesi->elementAt(i) << " avg " << contentAvarageCalculator(YoneticiListesi->elementAt(i)) << endl;
     }
 }
 // buradayız sıralama algoritması yazılacak :dddd
 void Content::putInOrder()
 {
+    // ortalamalara göre siraya koy.
     swap(YoneticiListesi);
     // yonetici listesi düzeyinde satır listelerinin ayrı ayrı ortalama hesabı.
     for (int i = 0; i < YoneticiListesi->Count(); i++)
     {
         // cout << contentAvarageCalculator(YoneticiListesi->elementAt(i)) << endl;
-        // Satir listesini kendi arasinda kucukten buyuge siralar.
+        // Satir listesini kendi arasinda kucukten buyuge siralar.-satir içi büyüklüğe göre siraya koy
         swapInRow(YoneticiListesi->elementAt(i));
-        // writing content's in desc order and list's list in desc averages order. cout << *YoneticiListesi->elementAt(i) << " avg " << contentAvarageCalculator(YoneticiListesi->elementAt(i)) << endl;
+        // writing content's in desc order and list's list in desc averages order.
+        // cout << *YoneticiListesi->elementAt(i) << " avg " << contentAvarageCalculator(YoneticiListesi->elementAt(i)) << endl;
     }
 
     // cout << *YoneticiListesi->elementAt(3) << endl;
@@ -92,6 +94,3 @@ void Content::swap(DoublyLinkedList<DoublyLinkedList<int> *> *yoneticiListesi)
         }
     }
 }
-// TODO: order yönetici listesi by avarage of its contents.
-// only last one problem. avarage calculation done.
-// the problem is ordering.
