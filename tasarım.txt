@@ -12,3 +12,4 @@ sınıf.cpp dosyalarının içerisinde sınıf.hpp dosyasında bulunan bloksuz m
 
 
 
+make yapmayı unutmayalım
