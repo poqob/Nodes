@@ -1,0 +1,1 @@
+// satir listesini burada inşa edeceğiz.

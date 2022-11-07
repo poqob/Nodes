@@ -1,0 +1,1 @@
+// yonetici listesini burada inşa edeceğiz
