@@ -11,7 +11,8 @@ public:
     void nextRow();
     void writingAllElements();
     void putInOrder();
-    void swap(DoublyLinkedList<int> *);
+    void swapInRow(DoublyLinkedList<int> *);
+    void swap(DoublyLinkedList<DoublyLinkedList<int> *> *);
     double contentAvarageCalculator(DoublyLinkedList<int> *);
 };
 
