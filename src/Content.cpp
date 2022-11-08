@@ -2,46 +2,50 @@
 
 Content::Content()
 {
-    YoneticiListesi = new DoublyLinkedList<DoublyLinkedList<int> *>();
-    SatirListesi = new DoublyLinkedList<int>();
+    YoneticiList = new YoneticiListesi();
+    SatirList = new SatirListesi();
 }
 
 Content::~Content()
 {
-    for (int i = 0; i < YoneticiListesi->Count(); i++)
+    // clearing-freed satir list members
+    for (int i = 0; i < YoneticiList->Count(); i++)
     {
-        YoneticiListesi->elementAt(i)->~DoublyLinkedList();
+        YoneticiList->elementAt(i).data->~SatirListesi();
     }
-    SatirListesi->~DoublyLinkedList();
-    delete YoneticiListesi;
-    delete SatirListesi;
+    SatirList->~SatirListesi();
+    delete YoneticiList;
+    delete SatirList;
     delete this;
 }
 
+// works after one line readed from veriler.txt
+// attemts readed numbers list -SatirList- to YoneticiList
 void Content::nextRow()
 {
-    YoneticiListesi->add(SatirListesi);
-    SatirListesi = new DoublyLinkedList<int>();
+    YoneticiList->add(SatirList);
+    SatirList = new SatirListesi();
 }
 
+// LOOK HERE AFTER ADAPTATION
 void Content::writingAllElements()
 {
-    for (int i = 0; i < YoneticiListesi->Count(); i++)
+    for (int i = 0; i < YoneticiList->Count(); i++)
     {
-        cout << *YoneticiListesi->elementAt(i) << " avg " << contentAvarageCalculator(YoneticiListesi->elementAt(i)) << endl;
+        cout << *YoneticiList->elementAt(i).data << " avg " << contentAvarageCalculator(YoneticiList->elementAt(i).data) << endl;
     }
 }
 // buradayız sıralama algoritması yazılacak :dddd
 void Content::putInOrder()
 {
     // ortalamalara göre siraya koy.
-    swap(YoneticiListesi);
+    swap(YoneticiList);
     // yonetici listesi düzeyinde satır listelerinin ayrı ayrı ortalama hesabı.
-    for (int i = 0; i < YoneticiListesi->Count(); i++)
+    for (int i = 0; i < YoneticiList->Count(); i++)
     {
         // cout << contentAvarageCalculator(YoneticiListesi->elementAt(i)) << endl;
         // Satir listesini kendi arasinda kucukten buyuge siralar.-satir içi büyüklüğe göre siraya koy
-        swapInRow(YoneticiListesi->elementAt(i));
+        swapInRow(YoneticiList->elementAt(i).data);
         // writing content's in desc order and list's list in desc averages order.
         // cout << *YoneticiListesi->elementAt(i) << " avg " << contentAvarageCalculator(YoneticiListesi->elementAt(i)) << endl;
     }
@@ -50,7 +54,7 @@ void Content::putInOrder()
 }
 
 // satır listesi düzeyinde liste içeriklerinin ortalama hesabı
-double Content::contentAvarageCalculator(DoublyLinkedList<int> *satirListesi)
+double Content::contentAvarageCalculator(SatirListesi *satirListesi)
 {
     double avarage = 0;
     for (int i = 0; i < satirListesi->Count(); i++)
@@ -61,7 +65,7 @@ double Content::contentAvarageCalculator(DoublyLinkedList<int> *satirListesi)
     return avarage / satirListesi->Count();
 }
 
-void Content::swapInRow(DoublyLinkedList<int> *satir)
+void Content::swapInRow(SatirListesi *satir)
 {
     // i kaçıncı periyotta olduğumuzu ifade ediyor.
     // j ise satır içerisinde gezdiğimiz elemanları.
@@ -79,7 +83,7 @@ void Content::swapInRow(DoublyLinkedList<int> *satir)
     }
 }
 
-void Content::swap(DoublyLinkedList<DoublyLinkedList<int> *> *yoneticiListesi)
+void Content::swap(YoneticiListesi *yoneticiListesi)
 {
     int n = yoneticiListesi->Count() - 1;
     for (int i = 0; i < n; i++)
@@ -87,7 +91,7 @@ void Content::swap(DoublyLinkedList<DoublyLinkedList<int> *> *yoneticiListesi)
         for (int j = 0; j < n - i; j++)
         {
             // cout << satir->elementAt(j) << " " << satir->elementAt(j + 1) << endl;
-            if (contentAvarageCalculator(yoneticiListesi->elementAt(j)) > contentAvarageCalculator(yoneticiListesi->elementAt(j + 1)))
+            if (contentAvarageCalculator(yoneticiListesi->elementAt(j).data) > contentAvarageCalculator(yoneticiListesi->elementAt(j + 1).data))
             {
                 yoneticiListesi->swap(j, j + 1);
             }

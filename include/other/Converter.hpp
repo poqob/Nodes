@@ -6,7 +6,6 @@
 #include <string>
 #include "Content.hpp"
 #include "StringMethod.hpp"
-#include "../list/DoublyLinkedList.hpp"
 
 using namespace std;
 
@@ -19,7 +18,7 @@ public:
     Converter();
     ~Converter();
     void readingFromFile(Content *);
-    void rowIntParser(string, DoublyLinkedList<int> *);
+    void rowIntParser(string, SatirListesi *);
 };
 
 #endif // CONVERTER

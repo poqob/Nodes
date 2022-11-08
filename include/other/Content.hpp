@@ -1,19 +1,21 @@
 #if !defined(CONTENT)
 #define CONTENT
-#include "../list/DoublyLinkedList.hpp"
+#include "../list/YoneticiListesi.hpp"
+#include "../list/SatirListesi.hpp"
+
 class Content
 {
 public:
-    DoublyLinkedList<DoublyLinkedList<int> *> *YoneticiListesi;
-    DoublyLinkedList<int> *SatirListesi;
+    YoneticiListesi *YoneticiList;
+    SatirListesi *SatirList;
     Content();
     ~Content();
     void nextRow();
     void writingAllElements();
     void putInOrder();
-    void swapInRow(DoublyLinkedList<int> *);
-    void swap(DoublyLinkedList<DoublyLinkedList<int> *> *);
-    double contentAvarageCalculator(DoublyLinkedList<int> *);
+    void swapInRow(SatirListesi *);
+    void swap(YoneticiListesi *);
+    double contentAvarageCalculator(SatirListesi *);
 };
 
 #endif // CONTENT

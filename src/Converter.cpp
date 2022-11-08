@@ -9,7 +9,7 @@ Converter::~Converter()
 {
     delete this;
 }
-void Converter::rowIntParser(string row, DoublyLinkedList<int> *SatirListesi)
+void Converter::rowIntParser(string row, SatirListesi *SatirList)
 {
     int firstSpaceLoc = 0;
     int till = 0;
@@ -23,12 +23,12 @@ void Converter::rowIntParser(string row, DoublyLinkedList<int> *SatirListesi)
             {
                 firstSpaceLoc = row.find(' ', firstNumLoc);
                 till = firstSpaceLoc - firstNumLoc + 1;
-                SatirListesi->add(stoi(row.substr(firstNumLoc, till)));
+                SatirList->add(stoi(row.substr(firstNumLoc, till)));
                 firstNumLoc = firstSpaceLoc + 1;
             }
             else
             {
-                SatirListesi->add(stoi(row.substr(firstNumLoc, row.length() - firstNumLoc)));
+                SatirList->add(stoi(row.substr(firstNumLoc, row.length() - firstNumLoc)));
                 break;
             }
 
@@ -50,7 +50,7 @@ void Converter::readingFromFile(Content *content)
     while (getline(read, temp0))
     {
         temp0 = StringMethod::trim(temp0);
-        rowIntParser(temp0, content->SatirListesi);
+        rowIntParser(temp0, content->SatirList);
         content->nextRow();
     }
     read.close();
