@@ -60,13 +60,13 @@ public:
         }
         size++;
     }
-    const SatirListesi *&first()
+    SatirListesi *&first()
     {
         if (isEmpty())
             throw "No Such Element";
         return head->data;
     }
-    const SatirListesi *&last()
+    SatirListesi *&last()
     {
         if (isEmpty())
             throw "No Such Element";
@@ -153,7 +153,7 @@ public:
         // cout << crnt1->data << " " << crnt2->data << endl;
         delete tmp, crnt1, crnt2;
     }
-    const YoneticiListesiNode &elementAt(int index)
+    YoneticiListesiNode elementAt(int index)
     {
         if (index < 0 || index >= size)
             throw "No Such Element";
