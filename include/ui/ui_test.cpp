@@ -1,6 +1,8 @@
 #include "iostream"
 #include "iomanip"
-#include "tabBar.hpp"
+#include "tabBar/tabBar.hpp"
+#include "ListBuilders/yoneticiListBuilder.hpp"
+
 using namespace std;
 
 int main()
@@ -28,7 +30,8 @@ int main()
     */
     int pageNum = 5;
     TabBar tabbar = TabBar();
-    tabbar.draw(100, true);
+    tabbar.draw(254, true);
+    // YoneticiListBuilder yb = YoneticiListBuilder();
 
     return 0;
 }

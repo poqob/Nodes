@@ -15,7 +15,7 @@ public:
     void putInOrder();
     void swapInRow(SatirListesi *);
     void swap(YoneticiListesi *);
-    double contentAvarageCalculator(SatirListesi *);
+    static double contentAvarageCalculator(SatirListesi *);
 };
 
 #endif // CONTENT

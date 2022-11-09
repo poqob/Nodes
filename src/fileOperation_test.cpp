@@ -4,6 +4,7 @@
 #include "StringMethod.cpp"
 #include "SatirListesi.cpp"
 #include "YoneticiListesi.cpp"
+#include "../include/ui/ListBuilders/yoneticiListBuilder.hpp"
 using namespace std;
 // todo: ui will be designed and functionalities will be added.
 int main()
@@ -14,7 +15,9 @@ int main()
     converter->readingFromFile(content);
 
     content->putInOrder();
-    content->writingAllElements();
+    YoneticiListBuilder yb = YoneticiListBuilder(content->YoneticiList, 0);
+
+    // content->writingAllElements();
     content->~Content();
     converter->~Converter();
     delete content;
