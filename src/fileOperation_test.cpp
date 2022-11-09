@@ -1,13 +1,13 @@
 #include <iostream>
 #include "Converter.cpp"
 #include "Content.cpp"
-#include "YoneticiListesi.cpp"
 #include "StringMethod.cpp"
+#include "SatirListesi.cpp"
+#include "YoneticiListesi.cpp"
 using namespace std;
 // todo: ui will be designed and functionalities will be added.
 int main()
 {
-
     Converter *converter = new Converter();
     Content *content = new Content();
     // read data from file.
