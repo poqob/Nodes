@@ -28,13 +28,15 @@ stringstream YoneticiListBuilder::nodeAdressCurrent(int pageNum)
 {
     // her sayfada yalnızca 8 adress yazdırma kodu.-sayfalar 0'dan baslar.
     stringstream yoneticiNodeAdresses;
-    YoneticiListesiNode *y = yoneticiListesi->head;
-    YoneticiListesiNode *itr = yoneticiListesi->head;
-    for (int i = pageNum * 8; i < 8 + (pageNum * 8) && i < yoneticiListesi->Count() && itr->next != NULL; i++, itr = itr->next)
+    // YoneticiListesiNode *y = yoneticiListesi->head;
+    // YoneticiListesiNode *itr = yoneticiListesi->head;
+    /*for (int i = pageNum * 8; i < 8 + (pageNum * 8) && i < yoneticiListesi->Count() && itr->next != NULL; i++, itr = itr->next)
     {
         y = y->next;
-        yoneticiNodeAdresses << "|" << &y << "|" << rowSpace;
-    }
+        yoneticiNodeAdresses << "|" << yoneticiListesi << "|" << rowSpace;
+    }*/
+
+    cout << *yoneticiListesi << "    ";
 
     return yoneticiNodeAdresses;
 }
@@ -51,7 +53,7 @@ void YoneticiListBuilder::draw(int pageNum)
     cout << nodeAdressCurrent(0).str() << endl;
 
     cout << longSpaces().str() << endl;
-    cout << nodeAdressCurrent(2).str() << endl;
+    // cout << nodeAdressCurrent(2).str() << endl;
 }
 
 YoneticiListBuilder::~YoneticiListBuilder()
