@@ -1,28 +1,6 @@
-#include <iostream>
-#include "../../list/YoneticiListesi.hpp"
-#include "../../list/YoneticiListesiNode.hpp"
+#include "iostream"
+#include "../ListBuilders/adressBuilder.hpp"
 using namespace std;
-
-class AdressBuilder
-{
-public:
-    YoneticiListesi *yonetici;
-    int pageNum;
-    YoneticiListesiNode nodes(AdressBuilder &);
-    AdressBuilder(YoneticiListesi *, int);
-    ~AdressBuilder();
-};
-
-AdressBuilder::AdressBuilder(YoneticiListesi *yonetici, int pageNum)
-{
-    this->yonetici = yonetici;
-    this->pageNum = pageNum;
-}
-
-AdressBuilder::~AdressBuilder()
-{
-}
-
 ostream &operator<<(ostream &screen, AdressBuilder &rgt)
 {
     int last = rgt.pageNum * 8;
@@ -55,23 +33,41 @@ ostream &operator<<(ostream &screen, AdressBuilder &rgt)
     {
         screen << itr->next << " <-> ";
     }
+    return screen;
+}
+/*
+// node adress writer
+ostream &operator<<(ostream &screen, YoneticiListesiNode *rgt)
+{
+    int j = 0;
+    for (YoneticiListesiNode *itr = rgt; itr != NULL; itr = itr->next, j++)
+    {
+        if (j % 8 == 0)
+            screen << endl;
+        screen << itr->data << "    ";
+    }
+    screen << endl;
+    return screen;
+}*/
+// todo::AGA BUNU KAC KERE CALISTIRACAGINI COZERSEN ODEV BITER-cozuyorum
 
+ostream &operator<<(ostream &screen, YoneticiListesi &rgt)
+{
+    for (YoneticiListesiNode *itr = rgt.head; itr != NULL; itr = itr->next)
+    {
+        screen << itr->next << " <-> ";
+    }
+    screen << endl;
     return screen;
 }
 
-YoneticiListesiNode AdressBuilder::nodes(AdressBuilder &rgt)
+// cout << *adr->yonetici->head->next->data;//satir listesi içerik yazdırma
+ostream &operator<<(ostream &screen, SatirListesi &rgt)
 {
-    YoneticiListesiNode *currentNode;
-    int i = rgt.pageNum * 8;
-    for (YoneticiListesiNode *itr = rgt.yonetici->head; i < 8 + (rgt.pageNum * 8) && i < rgt.yonetici->Count() && itr != NULL; i++, itr = itr->next)
+    for (SatirListesiNode *itr = rgt.head; itr != NULL; itr = itr->next)
     {
-        itr = itr->next;
+        screen << itr->data << " <-> ";
     }
-    int j = 0;
-    // yazici
-    for (YoneticiListesiNode *itr = rgt.yonetici->head; j < i && j < rgt.yonetici->Count() + i && itr != NULL; j++, itr = itr->next)
-    {
-        currentNode = itr->next->prev;
-    }
-    return *currentNode;
+    screen << endl;
+    return screen;
 }

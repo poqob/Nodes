@@ -1,39 +1,39 @@
-// yonetici listesini burada inşa edeceğiz
 #include "../../other/Content.hpp"
-#include "adressBuilder.cpp"
 #include "iostream"
 #include "iomanip"
 #include "sstream"
+#include "../ostreams/ostream.cpp"
 using namespace std;
 
-class YoneticiListBuilder
+class YoneticiListesiBuilder
 {
 private:
     YoneticiListesi *yoneticiListesi;
     string rowSpace = "    ";
-    stringstream nodeAdressCurrent(int); // yonetici listesi elemanlarının adreslerini üreten metot.1
+    stringstream nodeAdressWriter(int); // yonetici listesi elemanlarının adreslerini üreten metot.1
     stringstream longSpaces();
     // satırlar arası bosluku üreten metot.
     AdressBuilder *adr;
 
 public:
-    YoneticiListBuilder(YoneticiListesi *, int);
-    ~YoneticiListBuilder();
+    YoneticiListesiBuilder(YoneticiListesi *, int);
+    ~YoneticiListesiBuilder();
     void draw(int);
 };
 
-YoneticiListBuilder::YoneticiListBuilder(YoneticiListesi *yoneticiListesi, int page)
+YoneticiListesiBuilder::YoneticiListesiBuilder(YoneticiListesi *yoneticiListesi, int page)
 {
     this->yoneticiListesi = yoneticiListesi;
     adr = new AdressBuilder(yoneticiListesi, page);
-    draw(page);
+    draw(1);
+    // draw(2);
 }
 
-stringstream YoneticiListBuilder::nodeAdressCurrent(int pageNum)
+stringstream YoneticiListesiBuilder::nodeAdressWriter(int pageNum)
 {
     // her sayfada yalnızca 8 adress yazdırma kodu.-sayfalar 0'dan baslar.
     stringstream yoneticiNodeAdresses;
-    // YoneticiListesiNode *y = yoneticiListesi->head;
+    /* YoneticiListesiNode *y = yoneticiListesi->head;
     // YoneticiListesiNode *itr = yoneticiListesi->head;
     /*for (int i = pageNum * 8; i < 8 + (pageNum * 8) && i < yoneticiListesi->Count() && itr->next != NULL; i++, itr = itr->next)
     {
@@ -52,32 +52,33 @@ stringstream YoneticiListBuilder::nodeAdressCurrent(int pageNum)
     adr->pageNum = 4;
     cout << *adr << "    ";*/
 
-    adr->pageNum = pageNum;
-    // cout << *adr->yonetici; // herbiri satır veriler.txt'deki satırlar.
-    cout << adr->yonetici->head->next->data->elementAt(1); // satir listesi elemanını yazdırdı.
+    // adr->pageNum = pageNum;
+    //  cout << *adr->yonetici; // herbiri satır veriler.txt'deki satırlar.
+    // cout << adr->yonetici->head->next->data->elementAt(1); // satir listesi elemanını yazdırdı.*/
+
     return yoneticiNodeAdresses;
 }
 
-stringstream YoneticiListBuilder::longSpaces()
+stringstream YoneticiListesiBuilder::longSpaces()
 {
     stringstream collumnSpacing;
     collumnSpacing << setw(110);
     return collumnSpacing;
 }
 
-void YoneticiListBuilder::draw(int pageNum)
+void YoneticiListesiBuilder::draw(int pageNum)
 {
-    cout << nodeAdressCurrent(1).str() << endl;
 
-    // cout << longSpaces().str() << endl;
-    // cout << nodeAdressCurrent(0).str() << endl;
-    // cout << nodeAdressCurrent(1).str() << endl;
-    // cout << nodeAdressCurrent(2).str() << endl;
-    // cout << nodeAdressCurrent(3).str() << endl;
+    stringstream ss;
+    // ss << adr->yonetici->head;
+    // cout << ss.str().substr(0, pageNum * 100) << endl;
+    cout << adr->yonetici->head;
 }
 
-YoneticiListBuilder::~YoneticiListBuilder()
+YoneticiListesiBuilder::~YoneticiListesiBuilder()
 {
+    delete adr;
+    delete this;
 }
 
 /*

@@ -29,7 +29,7 @@ public:
     void swap(int index1, int index2);
     YoneticiListesiNode elementAt(int index);
     void clear();
-    friend ostream &operator<<(ostream &screen, YoneticiListesi &rgt);
+    // friend ostream &operator<<(ostream &screen, YoneticiListesi &rgt);
     void printNodesFromPositionInReverseOrder(int index);
     void printReverseOrder();
     ~YoneticiListesi();

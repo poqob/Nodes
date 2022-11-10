@@ -186,43 +186,6 @@ void YoneticiListesi::printReverseOrder()
     printNodesFromPositionInReverseOrder(size - 1);
 }
 
-ostream &operator<<(ostream &screen, YoneticiListesiNode *rgt)
-{
-    int j = 0;
-    for (YoneticiListesiNode *itr = rgt; itr != NULL; itr = itr->next, j++)
-    {
-        if (j % 8 == 0)
-            screen << endl;
-        screen << itr->data << " <-> ";
-    }
-    screen << endl;
-    return screen;
-}
-// node builder
-ostream &operator<<(ostream &screen, YoneticiListesiNode *rgt)
-{
-    int j = 0;
-    for (YoneticiListesiNode *itr = rgt; itr != NULL; itr = itr->next, j++)
-    {
-        if (j % 8 == 0)
-            screen << endl;
-        screen << itr->data << " <-> ";
-    }
-    screen << endl;
-    return screen;
-}
-// todo::AGA BUNU KAC KERE CALISTIRACAGINI COZERSEN ODEV BITER-cozuyorum az kaldı
-
-ostream &operator<<(ostream &screen, YoneticiListesi &rgt)
-{
-    for (YoneticiListesiNode *itr = rgt.head; itr != NULL; itr = itr->next)
-    {
-        screen << itr->next << " <-> ";
-    }
-    screen << endl;
-    return screen;
-}
-
 YoneticiListesi::~YoneticiListesi()
 {
     clear();

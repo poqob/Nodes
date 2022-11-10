@@ -156,15 +156,7 @@ void SatirListesi::clear()
     while (!isEmpty())
         removeAt(0);
 }
-ostream &operator<<(ostream &screen, SatirListesi &rgt)
-{
-    for (SatirListesiNode *itr = rgt.head; itr != NULL; itr = itr->next)
-    {
-        screen << itr->data << " <-> ";
-    }
-    screen << endl;
-    return screen;
-}
+
 void SatirListesi::printNodesFromPositionInReverseOrder(int index)
 {
     if (index < 0 || index >= size)
