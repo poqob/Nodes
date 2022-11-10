@@ -12,8 +12,6 @@ public:
 	YoneticiListesiNode *next;
 	YoneticiListesiNode *prev;
 	double calculateAvarage;
-	double avarage;
-
 	YoneticiListesiNode(SatirListesi *data, YoneticiListesiNode *next = NULL, YoneticiListesiNode *prev = NULL)
 	{
 		this->data = data;

@@ -17,7 +17,10 @@ int main()
     content->putInOrder();
     YoneticiListBuilder yb = YoneticiListBuilder(content->YoneticiList, 0);
 
-    // content->writingAllElements();
+    //  content->writingAllElements();
+    // content->writing();
+    // cout << *content->YoneticiList << endl;
+
     content->~Content();
     converter->~Converter();
     delete content;

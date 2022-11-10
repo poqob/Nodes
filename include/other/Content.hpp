@@ -12,6 +12,7 @@ public:
     ~Content();
     void nextRow();
     void writingAllElements();
+    void writing();
     void putInOrder();
     void swapInRow(SatirListesi *);
     void swap(YoneticiListesi *);

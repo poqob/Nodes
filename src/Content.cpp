@@ -35,6 +35,13 @@ void Content::writingAllElements()
         cout << *YoneticiList->elementAt(i).data << " avg " << contentAvarageCalculator(YoneticiList->elementAt(i).data) << endl;
     }
 }
+void Content::writing()
+{
+    for (int i = 0; i < YoneticiList->Count(); i++)
+    {
+        cout << YoneticiList->elementAt(i).data << endl;
+    }
+}
 // buradayız sıralama algoritması yazılacak :dddd
 void Content::putInOrder()
 {

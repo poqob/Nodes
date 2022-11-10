@@ -7,12 +7,12 @@
 class YoneticiListesi
 {
 private:
-    YoneticiListesiNode *head;
     int size;
-
     YoneticiListesiNode *FindPreviousByPosition(int index);
 
 public:
+    YoneticiListesiNode *head;
+
     YoneticiListesi();
     int Count() const;
     bool isEmpty() const;
