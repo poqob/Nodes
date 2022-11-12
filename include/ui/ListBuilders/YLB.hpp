@@ -13,7 +13,6 @@ class YLB
 {
 private:
     YoneticiListesi *yoneticiListesi;
-    void draw(int);
     string createAdresses(int);
     string createUnderline(string);
     string createPrevAdress(int);
@@ -22,8 +21,10 @@ private:
     double averageCalculator(SatirListesi *);
 
 public:
+    string lastUnderLine;
     YLB(YoneticiListesi *, int);
-    ~YLB();
+    void draw(int);
+    //    ~YLB();
 };
 
 #endif // YONETICIBUILDER

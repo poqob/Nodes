@@ -3,7 +3,7 @@
 YLB::YLB(YoneticiListesi *yoneticiListesi, int page)
 {
     this->yoneticiListesi = yoneticiListesi;
-    draw(page);
+    // draw(page);
 }
 
 double YLB::averageCalculator(SatirListesi *satirListesi)
@@ -126,7 +126,6 @@ string YLB::createAvarages(int pageNum, string prevLine)
     // sol '|' yaratmak.
     for (int k = prevLine.length() - 1; k > 1; k--)
     {
-
         if (prevLine.at(k) != ' ' && prevLine.at(k - 1) == ' ')
         {
             output.erase(k, 1);
@@ -168,12 +167,13 @@ void YLB::draw(int pageNum)
     cout << createUnderline(averagesOfSlNode) << endl;
     cout << adressOfNextNode << endl;
     cout << createUnderline(adressOfNextNode) << endl;
+    lastUnderLine = createUnderline(adressOfNextNode);
 }
-
+/*
 YLB::~YLB()
 {
     delete this;
-}
+}*/
 
 /*
 Yonetici Liste yazdırma stili:

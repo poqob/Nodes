@@ -10,10 +10,11 @@ class TabBar
 {
 private:
     string barArangement(int, bool);
-    void draw(int, bool);
     int pageIndex = 0;
 
 public:
+    void draw(int, bool);
+
     TabBar(int, bool);
 };
 
