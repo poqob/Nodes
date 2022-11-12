@@ -16,6 +16,7 @@ public:
     string createUnderline(string);
     string createPrevAdress(int);
     string createAvarages(int);
+    string createNextAdress(int);
     double averageCalculator(SatirListesi *);
     ~YLB();
     void draw(int);
@@ -66,12 +67,23 @@ string YLB::createAdresses(int pageNum)
 string YLB::createUnderline(string input)
 {
     string underlines = "";
-    for (int i = 0; i < input.length(); i++)
+    int cizgi = 0;
+    int bosluk = 0;
+    for (int i = 0; i < input.length() - 1; i++)
     {
         if (input.at(i) != ' ')
-            underlines.push_back('-');
+        {
+            underlines.append(string(bosluk, ' '));
+            bosluk = 0;
+            cizgi++;
+            // underlines.push_back('-');
+        }
         else
-            underlines.push_back(' ');
+        {
+            underlines.append(string(cizgi, '-'));
+            cizgi = 0;
+            bosluk++;
+        }
     }
     return underlines;
 }
@@ -97,6 +109,27 @@ string YLB::createPrevAdress(int pageNum)
     return output;
 }
 
+string YLB::createNextAdress(int pageNum)
+{
+    stringstream result;
+    string output;
+    int i = 0;
+    for (YoneticiListesiNode *itr = yoneticiListesi->head->next; itr != NULL; itr = itr->next)
+    {
+        result << "|" << itr->next << "|"
+               << "    ";
+        i++;
+        if (i % 8 == 0)
+            result << endl;
+    }
+    result << endl;
+    for (int j = 0; j < pageNum; j++)
+    {
+        getline(result, output);
+    }
+    return output;
+}
+
 string YLB::createAvarages(int pageNum)
 {
     stringstream result;
@@ -104,7 +137,7 @@ string YLB::createAvarages(int pageNum)
     int i = 0;
     for (YoneticiListesiNode *itr = yoneticiListesi->head; itr != NULL; itr = itr->next)
     {
-        result << "|" << averageCalculator(yoneticiListesi->elementAt(i).data) << "|";
+        result << "|" << averageCalculator(yoneticiListesi->elementAt(i).data) << "|    ";
         i++;
         if (i % 8 == 0)
             result << endl;
@@ -124,6 +157,9 @@ void YLB::draw(int pageNum)
     cout << createPrevAdress(pageNum) << endl;
     cout << createUnderline(createPrevAdress(pageNum)) << endl;
     cout << createAvarages(pageNum) << endl;
+    cout << createUnderline(createAvarages(pageNum)) << endl;
+    cout << createNextAdress(pageNum) << endl;
+    cout << createUnderline(createNextAdress(pageNum)) << endl;
 }
 
 YLB::~YLB()
@@ -133,8 +169,6 @@ YLB::~YLB()
 
 /*
 Yonetici Liste yazdırma stili:
-
-
 
 yonetici listesi node prev->next adresleri taransın
 ---------------------------------------------------
