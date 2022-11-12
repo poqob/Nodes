@@ -50,7 +50,7 @@ ostream &operator<<(ostream &screen, YoneticiListesiNode *rgt)
     return screen;
 }*/
 // todo::AGA BUNU KAC KERE CALISTIRACAGINI COZERSEN ODEV BITER-cozuyorum
-
+/*
 ostream &operator<<(ostream &screen, YoneticiListesi &rgt)
 {
     for (YoneticiListesiNode *itr = rgt.head; itr != NULL; itr = itr->next)
@@ -60,6 +60,7 @@ ostream &operator<<(ostream &screen, YoneticiListesi &rgt)
     screen << endl;
     return screen;
 }
+*/
 
 // cout << *adr->yonetici->head->next->data;//satir listesi içerik yazdırma
 ostream &operator<<(ostream &screen, SatirListesi &rgt)

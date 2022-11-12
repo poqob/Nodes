@@ -17,7 +17,8 @@ int main()
 
     content->putInOrder();
     // YoneticiListesiBuilder yb = YoneticiListesiBuilder(content->YoneticiList, 0);
-    YLB yb = YLB(content->YoneticiList, 1);
+    YLB yb = YLB(content->YoneticiList, 2);
+
     content->~Content();
     converter->~Converter();
     delete content;

@@ -15,6 +15,8 @@ public:
     string createAdresses(int);
     string createUnderline(string);
     string createPrevAdress(int);
+    string createAvarages(int);
+    double averageCalculator(SatirListesi *);
     ~YLB();
     void draw(int);
 };
@@ -30,6 +32,17 @@ YLB::YLB(YoneticiListesi *yoneticiListesi, int page)
     */
     draw(page);
 }
+
+double YLB::averageCalculator(SatirListesi *satirListesi)
+{
+    double average = 0;
+    for (int i = 0; i < satirListesi->Count(); i++)
+    {
+        average += satirListesi->elementAt(i);
+    }
+    return average / satirListesi->Count();
+}
+
 string YLB::createAdresses(int pageNum)
 {
     stringstream result;
@@ -37,7 +50,7 @@ string YLB::createAdresses(int pageNum)
     int i = 0;
     for (YoneticiListesiNode *itr = yoneticiListesi->head; itr != NULL; itr = itr->next)
     {
-        result << itr->next << "     ";
+        result << " " << itr->next << "     ";
         i++;
         if (i % 8 == 0)
             result << endl;
@@ -70,7 +83,28 @@ string YLB::createPrevAdress(int pageNum)
     int i = 0;
     for (YoneticiListesiNode *itr = yoneticiListesi->head->next; itr != NULL; itr = itr->next)
     {
-        result << itr->prev << "     ";
+        result << "|" << itr->prev << "|"
+               << "    ";
+        i++;
+        if (i % 8 == 0)
+            result << endl;
+    }
+    result << endl;
+    for (int j = 0; j < pageNum; j++)
+    {
+        getline(result, output);
+    }
+    return output;
+}
+
+string YLB::createAvarages(int pageNum)
+{
+    stringstream result;
+    string output;
+    int i = 0;
+    for (YoneticiListesiNode *itr = yoneticiListesi->head; itr != NULL; itr = itr->next)
+    {
+        result << "|" << averageCalculator(yoneticiListesi->elementAt(i).data) << "|";
         i++;
         if (i % 8 == 0)
             result << endl;
@@ -89,6 +123,7 @@ void YLB::draw(int pageNum)
     cout << createUnderline(createAdresses(pageNum)) << endl;
     cout << createPrevAdress(pageNum) << endl;
     cout << createUnderline(createPrevAdress(pageNum)) << endl;
+    cout << createAvarages(pageNum) << endl;
 }
 
 YLB::~YLB()
