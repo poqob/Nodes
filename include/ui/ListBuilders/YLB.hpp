@@ -15,7 +15,7 @@ public:
     string createAdresses(int);
     string createUnderline(string);
     string createPrevAdress(int);
-    string createAvarages(int);
+    string createAvarages(int, string);
     string createNextAdress(int);
     double averageCalculator(SatirListesi *);
     ~YLB();
@@ -129,37 +129,73 @@ string YLB::createNextAdress(int pageNum)
     }
     return output;
 }
-
-string YLB::createAvarages(int pageNum)
+// adres uzunluguna aglı olarak problem cikabilir.
+string YLB::createAvarages(int pageNum, string prevLine)
 {
+
+    // satir listesi ortalamalarini yazdiracağimiz bolmenin/satirin genislik oryantasyonu.
     stringstream result;
     string output;
-    int i = 0;
-    for (YoneticiListesiNode *itr = yoneticiListesi->head; itr != NULL; itr = itr->next)
+    result << "|";
+
+    // sag '|' karakterleri yaratan metot.
+    for (int k = 1; k < prevLine.length(); k++)
     {
-        result << "|" << averageCalculator(yoneticiListesi->elementAt(i).data) << "|    ";
-        i++;
-        if (i % 8 == 0)
-            result << endl;
+
+        if (prevLine.at(k) != ' ' && prevLine.at(k + 1) == ' ')
+        {
+            result << "|";
+        }
+        else
+            result << " ";
     }
-    result << endl;
-    for (int j = 0; j < pageNum; j++)
+    output = result.str();
+
+    // sol '|' yaratmak.
+    for (int k = prevLine.length() - 1; k > 1; k--)
     {
-        getline(result, output);
+
+        if (prevLine.at(k) != ' ' && prevLine.at(k - 1) == ' ')
+        {
+            output.erase(k, 1);
+            output.insert(k, "|");
+        }
     }
+
+    // avg hesabini yazdirmak.
+    int firstlLoc = 1;
+    string avg;
+    int secondLoc;
+    int dest = 8;
+    for (int o = (pageNum - 1) * 8; o < (pageNum)*8 && o < yoneticiListesi->Count(); o++)
+    {
+
+        avg = to_string(averageCalculator(yoneticiListesi->elementAt(o).data));
+        avg.erase(dest);
+        output.erase(firstlLoc, avg.length());
+        output.insert(firstlLoc, avg);
+        firstlLoc = output.find('|', firstlLoc + 1);
+        secondLoc = output.find('|', firstlLoc + 1);
+        firstlLoc = output.find('|', secondLoc) + 1;
+    }
+
     return output;
 }
 
 void YLB::draw(int pageNum)
 {
-    cout << createAdresses(pageNum) << endl;
-    cout << createUnderline(createAdresses(pageNum)) << endl;
-    cout << createPrevAdress(pageNum) << endl;
-    cout << createUnderline(createPrevAdress(pageNum)) << endl;
-    cout << createAvarages(pageNum) << endl;
-    cout << createUnderline(createAvarages(pageNum)) << endl;
-    cout << createNextAdress(pageNum) << endl;
-    cout << createUnderline(createNextAdress(pageNum)) << endl;
+    string adressOfCurrentYlNode = createAdresses(pageNum);
+    string adressOfPrevNode = createPrevAdress(pageNum);
+    string adressOfNextNode = createNextAdress(pageNum);
+    string averagesOfSlNode = createAvarages(pageNum, adressOfPrevNode);
+    cout << adressOfCurrentYlNode << endl;
+    cout << createUnderline(adressOfCurrentYlNode) << endl;
+    cout << adressOfPrevNode << endl;
+    cout << createUnderline(adressOfPrevNode) << endl;
+    cout << averagesOfSlNode << endl;
+    cout << createUnderline(averagesOfSlNode) << endl;
+    cout << adressOfNextNode << endl;
+    cout << createUnderline(adressOfNextNode) << endl;
 }
 
 YLB::~YLB()
