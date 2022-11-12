@@ -18,6 +18,7 @@ int main()
     content->putInOrder();
     int page = 1;
     int selection = 0;
+    int maxSelectionOfCurrentPage = 7; // 0...7-total 8
     int lastPage = (content->YoneticiList->Count() % 8 == 0 ? 0 : 1) + content->YoneticiList->Count() / 8;
     bool isLastPage = false;
     YLB yb = YLB(content->YoneticiList, page);
@@ -27,7 +28,9 @@ int main()
     while (true)
     {
         char ch;
+
         system("cls");
+        cout << maxSelectionOfCurrentPage << endl;
 
         if (page == lastPage)
             isLastPage = true;
@@ -39,6 +42,7 @@ int main()
         if (ch == 'a' && page != 1)
         {
             page--;
+            selection = maxSelectionOfCurrentPage;
             isLastPage = false;
         }
         else if (ch == 'd')
@@ -53,9 +57,10 @@ int main()
                 isLastPage = false;
                 page++;
             }
+            selection = 0;
         }
         // controll of inter selection TODO: not 8, one page may have elements less than 8.
-        if (ch == 'c' && selection != 8)
+        if (ch == 'c' && selection != maxSelectionOfCurrentPage)
         {
             selection++;
         }
@@ -63,6 +68,23 @@ int main()
         {
             selection--;
         }
+        else if (ch == 'c' && selection == maxSelectionOfCurrentPage)
+        {
+            if (page != lastPage)
+            {
+                page++;
+                selection = 0;
+            }
+        }
+        else if (ch == 'z' && selection == 0)
+        {
+            if (page - 1 != 0)
+            {
+                page--;
+                selection = maxSelectionOfCurrentPage;
+            }
+        }
+        maxSelectionOfCurrentPage = (content->YoneticiList->Count() - 8 * (page - 1) >= 7 ? 7 : (8 - abs(content->YoneticiList->Count() - 8 * page)) - 1);
     }
 
     content->~Content();

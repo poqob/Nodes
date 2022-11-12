@@ -15,6 +15,7 @@ private:
 
 public:
     string lunderl; // last under line
+    string locArrowLine;
     LocationArrow();
     void draw(YLB *, int);
     ~LocationArrow();
@@ -47,6 +48,7 @@ void LocationArrow::draw(YLB *y, int wantedSection)
             break;
     }
     arrow.insert(0, string(loc, ' '));
+    locArrowLine = arrow; // according to this locArrowLine we will create SatirListesi Objects.
     cout << arrow << endl;
 }
 
