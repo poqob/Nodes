@@ -15,48 +15,41 @@ private:
 
 public:
     string lunderl; // last under line
-    int startLoc = 0;
-    int stopLoc = 0;
-    char arrow = '^';
-    void calculateLocations(int);
-    string drawArrow(int, int);
-    LocationArrow(YLB *);
-    void draw(int);
+    LocationArrow();
+    void draw(YLB *, int);
     ~LocationArrow();
 };
 
-LocationArrow::LocationArrow(YLB *y)
+LocationArrow::LocationArrow()
+{
+}
+void LocationArrow::draw(YLB *y, int wantedSection)
 {
     lunderl = y->lastUnderLine;
-}
-
-string LocationArrow::drawArrow(int startLoc, int stopLoc)
-{
-    stringstream output;
-    string result;
-    string arrow;
-    output << setw(startLoc - 1);
-    result = output.str();
-    result.append(string(stopLoc - startLoc, '^'));
-    return result;
-}
-
-void LocationArrow::calculateLocations(int whichSatirList)
-{
-    int firstLoc = 0;
-    int secondLoc = 0;
-    secondLoc = lunderl.find(" ", firstLoc + 1) - 1;
-    for (int i = 0; i < whichSatirList; i++)
+    string arrow = "";
+    int loc = 0;
+    // find
+    for (int j = 0; j < wantedSection; j++)
     {
-        firstLoc = secondLoc;
-        secondLoc = lunderl.find(" ", firstLoc);
+        if (wantedSection != 0)
+            loc = lunderl.find(" -", loc + 1) + 1;
+        else
+            loc = 0;
     }
+    // draw
+    for (int i = loc; i < lunderl.length(); i++)
+    {
+        if (lunderl.at(i) != ' ')
+        {
+            arrow.append("^");
+        }
+        else
+            break;
+    }
+    arrow.insert(0, string(loc, ' '));
+    cout << arrow << endl;
 }
 
-void LocationArrow::draw(int whereAmI)
-{
-    cout << drawArrow(0, 5);
-}
 LocationArrow::~LocationArrow()
 {
 }

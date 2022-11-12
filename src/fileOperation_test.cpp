@@ -17,11 +17,12 @@ int main()
 
     content->putInOrder();
     int page = 1;
+    int selection = 0;
     int lastPage = (content->YoneticiList->Count() % 8 == 0 ? 0 : 1) + content->YoneticiList->Count() / 8;
     bool isLastPage = false;
     YLB yb = YLB(content->YoneticiList, page);
     TabBar tb = TabBar(page, isLastPage);
-    LocationArrow la = LocationArrow(&yb);
+    LocationArrow la = LocationArrow();
 
     while (true)
     {
@@ -32,8 +33,9 @@ int main()
             isLastPage = true;
         tb.draw(page, isLastPage);
         yb.draw(page);
-        la.draw(5);
+        la.draw(&yb, selection);
         cin >> ch;
+        // controll of inter pages.
         if (ch == 'a' && page != 1)
         {
             page--;
@@ -51,6 +53,15 @@ int main()
                 isLastPage = false;
                 page++;
             }
+        }
+        // controll of inter selection TODO: not 8, one page may have elements less than 8.
+        if (ch == 'c' && selection != 8)
+        {
+            selection++;
+        }
+        else if (ch == 'z' && selection != 0)
+        {
+            selection--;
         }
     }
 
