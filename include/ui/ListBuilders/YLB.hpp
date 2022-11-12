@@ -13,6 +13,8 @@ private:
 
 public:
     YLB(YoneticiListesi *, int);
+    string createAdresses(int);
+    string parseAdress();
     ~YLB();
     void draw(int);
 };
@@ -21,34 +23,43 @@ YLB::YLB(YoneticiListesi *yoneticiListesi, int page)
 {
     this->yoneticiListesi = yoneticiListesi;
     adr = new AdressBuilder(yoneticiListesi, page);
-    draw(0);
+    // prints related page
     draw(1);
     draw(2);
     draw(3);
+    draw(4);
+}
+string YLB::createAdresses(int row)
+{
+    stringstream result;
+    string output;
+    int i = 0;
+    for (YoneticiListesiNode *itr = yoneticiListesi->head; itr != NULL; itr = itr->next)
+    {
+        result << itr->next << " ";
+        i++;
+        if (i % 8 == 0)
+            result << endl;
+    }
+    result << endl;
+    for (int j = 0; j < row; j++)
+    {
+        getline(result, output);
+    }
+    return output;
+}
+
+string YLB::parseAdress()
+{
+    string result = "";
+    return result;
 }
 
 // BURADA KALDIK-AMAC: 0 ve 1 indexli sayfalar için yonetici listesi adreslerini sağlıklı bir şekilde ekrana bastırmak.
 void YLB::draw(int pageNum)
 {
-    int last = pageNum * 8;
-    int itrNum = 0;
-    int secItr = 0;
 
-    int suSayi = 0;
-    yoneticiListesi->Count() % 8 == 0 ? suSayi = ((pageNum - 1) * 8) : suSayi = yoneticiListesi->Count() % 8;
-
-    YoneticiListesiNode *itr;
-    stringstream output;
-    for (itr = yoneticiListesi->head; itrNum <= suSayi && itr != NULL; itrNum++, itr = itr->next)
-    {
-        itr = itr->next;
-    }
-
-    for (; secItr < 8 && itrNum < yoneticiListesi->Count() && itr != NULL; secItr++, itr = itr->next)
-    {
-        output << itr->next << "    ";
-    }
-    cout << output.str() << endl;
+    cout << createAdresses(pageNum) << endl;
 }
 
 YLB::~YLB()

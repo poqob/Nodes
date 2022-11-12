@@ -18,9 +18,6 @@ int main()
     content->putInOrder();
     // YoneticiListesiBuilder yb = YoneticiListesiBuilder(content->YoneticiList, 0);
     YLB yb = YLB(content->YoneticiList, 0);
-    //  content->writingAllElements();
-    // content->writing();
-    // cout << *content->YoneticiList << endl;
 
     content->~Content();
     converter->~Converter();
