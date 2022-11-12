@@ -1,222 +1,29 @@
+#if !defined(YONETICIBUILDER)
+#define YONETICIBUILDER
+
 #include "../../other/Content.hpp"
 #include "iostream"
 #include "iomanip"
 #include "sstream"
 #include "../ostreams/ostream.cpp"
+#include "../../list/YoneticiListesi.hpp"
 using namespace std;
 
 class YLB
 {
 private:
     YoneticiListesi *yoneticiListesi;
-
-public:
-    YLB(YoneticiListesi *, int);
+    void draw(int);
     string createAdresses(int);
     string createUnderline(string);
     string createPrevAdress(int);
     string createAvarages(int, string);
     string createNextAdress(int);
     double averageCalculator(SatirListesi *);
+
+public:
+    YLB(YoneticiListesi *, int);
     ~YLB();
-    void draw(int);
 };
 
-YLB::YLB(YoneticiListesi *yoneticiListesi, int page)
-{
-    this->yoneticiListesi = yoneticiListesi;
-    /* prints related page
-    draw(1);
-    draw(2);
-    draw(3);
-    draw(4);
-    */
-    draw(page);
-}
-
-double YLB::averageCalculator(SatirListesi *satirListesi)
-{
-    double average = 0;
-    for (int i = 0; i < satirListesi->Count(); i++)
-    {
-        average += satirListesi->elementAt(i);
-    }
-    return average / satirListesi->Count();
-}
-
-string YLB::createAdresses(int pageNum)
-{
-    stringstream result;
-    string output;
-    int i = 0;
-    for (YoneticiListesiNode *itr = yoneticiListesi->head; itr != NULL; itr = itr->next)
-    {
-        result << " " << itr->next << "     ";
-        i++;
-        if (i % 8 == 0)
-            result << endl;
-    }
-    result << endl;
-    for (int j = 0; j < pageNum; j++)
-    {
-        getline(result, output);
-    }
-    return output;
-}
-
-string YLB::createUnderline(string input)
-{
-    string underlines = "";
-    int cizgi = 0;
-    int bosluk = 0;
-    for (int i = 0; i < input.length() - 1; i++)
-    {
-        if (input.at(i) != ' ')
-        {
-            underlines.append(string(bosluk, ' '));
-            bosluk = 0;
-            cizgi++;
-            // underlines.push_back('-');
-        }
-        else
-        {
-            underlines.append(string(cizgi, '-'));
-            cizgi = 0;
-            bosluk++;
-        }
-    }
-    return underlines;
-}
-
-string YLB::createPrevAdress(int pageNum)
-{
-    stringstream result;
-    string output;
-    int i = 0;
-    for (YoneticiListesiNode *itr = yoneticiListesi->head->next; itr != NULL; itr = itr->next)
-    {
-        result << "|" << itr->prev << "|"
-               << "    ";
-        i++;
-        if (i % 8 == 0)
-            result << endl;
-    }
-    result << endl;
-    for (int j = 0; j < pageNum; j++)
-    {
-        getline(result, output);
-    }
-    return output;
-}
-
-string YLB::createNextAdress(int pageNum)
-{
-    stringstream result;
-    string output;
-    int i = 0;
-    for (YoneticiListesiNode *itr = yoneticiListesi->head->next; itr != NULL; itr = itr->next)
-    {
-        result << "|" << itr->next << "|"
-               << "    ";
-        i++;
-        if (i % 8 == 0)
-            result << endl;
-    }
-    result << endl;
-    for (int j = 0; j < pageNum; j++)
-    {
-        getline(result, output);
-    }
-    return output;
-}
-// adres uzunluguna aglı olarak problem cikabilir.
-string YLB::createAvarages(int pageNum, string prevLine)
-{
-
-    // satir listesi ortalamalarini yazdiracağimiz bolmenin/satirin genislik oryantasyonu.
-    stringstream result;
-    string output;
-    result << "|";
-
-    // sag '|' karakterleri yaratan metot.
-    for (int k = 1; k < prevLine.length(); k++)
-    {
-
-        if (prevLine.at(k) != ' ' && prevLine.at(k + 1) == ' ')
-        {
-            result << "|";
-        }
-        else
-            result << " ";
-    }
-    output = result.str();
-
-    // sol '|' yaratmak.
-    for (int k = prevLine.length() - 1; k > 1; k--)
-    {
-
-        if (prevLine.at(k) != ' ' && prevLine.at(k - 1) == ' ')
-        {
-            output.erase(k, 1);
-            output.insert(k, "|");
-        }
-    }
-
-    // avg hesabini yazdirmak.
-    int firstlLoc = 1;
-    string avg;
-    int secondLoc;
-    int dest = 8;
-    for (int o = (pageNum - 1) * 8; o < (pageNum)*8 && o < yoneticiListesi->Count(); o++)
-    {
-
-        avg = to_string(averageCalculator(yoneticiListesi->elementAt(o).data));
-        avg.erase(dest);
-        output.erase(firstlLoc, avg.length());
-        output.insert(firstlLoc, avg);
-        firstlLoc = output.find('|', firstlLoc + 1);
-        secondLoc = output.find('|', firstlLoc + 1);
-        firstlLoc = output.find('|', secondLoc) + 1;
-    }
-
-    return output;
-}
-
-void YLB::draw(int pageNum)
-{
-    string adressOfCurrentYlNode = createAdresses(pageNum);
-    string adressOfPrevNode = createPrevAdress(pageNum);
-    string adressOfNextNode = createNextAdress(pageNum);
-    string averagesOfSlNode = createAvarages(pageNum, adressOfPrevNode);
-    cout << adressOfCurrentYlNode << endl;
-    cout << createUnderline(adressOfCurrentYlNode) << endl;
-    cout << adressOfPrevNode << endl;
-    cout << createUnderline(adressOfPrevNode) << endl;
-    cout << averagesOfSlNode << endl;
-    cout << createUnderline(averagesOfSlNode) << endl;
-    cout << adressOfNextNode << endl;
-    cout << createUnderline(adressOfNextNode) << endl;
-}
-
-YLB::~YLB()
-{
-    delete this;
-}
-
-/*
-Yonetici Liste yazdırma stili:
-
-yonetici listesi node prev->next adresleri taransın
----------------------------------------------------
-yonetici listesi node prev
----------------------------------------------------
-yonetilistesi node içindeki satırListesi ortalama hespaları
----------------------------------------------------
-yonetici listesi node next
----------------------------------------------------
-*/
-
-// ADRESS BELEKTE SILINDI MI TAKIP EDILSIN
-
-// TODO: yazdırılan adresslerin sagına ve soluna birer - daha eklenecek
-// yazdırılan prev adreslerinin basına ve sonuna | eklenecek
+#endif // YONETICIBUILDER

@@ -4,8 +4,9 @@
 #include "StringMethod.cpp"
 #include "SatirListesi.cpp"
 #include "YoneticiListesi.cpp"
+#include "Tabbar.cpp"
+#include "YLB.cpp"
 //#include "../include/ui/ListBuilders/yoneticiListBuilder.hpp"
-#include "../include/ui/ListBuilders/YLB.hpp"
 using namespace std;
 // todo: ui will be designed and functionalities will be added.
 int main()
@@ -17,7 +18,7 @@ int main()
 
     content->putInOrder();
     // YoneticiListesiBuilder yb = YoneticiListesiBuilder(content->YoneticiList, 0);
-
+    TabBar tb = TabBar(1);
     YLB yb = YLB(content->YoneticiList, 1);
 
     content->~Content();
