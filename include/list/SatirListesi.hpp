@@ -6,13 +6,13 @@
 class SatirListesi
 {
 private:
-    SatirListesiNode *head;
     int size;
 
     SatirListesiNode *FindPreviousByPosition(int index);
 
 public:
     SatirListesi();
+    SatirListesiNode *head;
     int Count() const;
     bool isEmpty() const;
     void add(const int &item);

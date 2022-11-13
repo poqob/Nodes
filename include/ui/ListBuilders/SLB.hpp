@@ -15,11 +15,13 @@ private:
 
 public:
     SLB();
-    void draw(YoneticiListesi *, int, string);
+    void draw(YoneticiListesi *, int, int, string);
     string createNextAdress(int);    // TODO
     string createContent(int);       // TODO
     string createCurrentAdress(int); // TODO
     int offset(string);
+    int arrowLenght(string);
+    void creator(YoneticiListesi *, int, int, string);
     SatirListesi *findAdress(int, int, YoneticiListesi *);
     string createUnderline(string);
 
@@ -42,47 +44,53 @@ SatirListesi *SLB::findAdress(int pageNum, int selection, YoneticiListesi *yl)
 
 string SLB::createUnderline(string input)
 {
-    string underlines = "";
-    int cizgi = 0;
-    int bosluk = 0;
-    for (int i = 0; i < input.length() - 1; i++)
+    stringstream result;
+    result << string("-", (arrowLenght(input))) << endl;
+    return result.str();
+}
+
+// we will make new underline method, old one screwed it up.
+// TODO: update createUnderLine methods.
+//  ..gain more true format
+// ..last page's yonetici listesi draw problem still remains.
+
+void SLB::creator(YoneticiListesi *yl, int whichSatirList, int page, string arrows)
+{
+    stringstream output;
+    stringstream tmps;
+    string tmp;
+    int current = (page - 1) * 8 + whichSatirList;
+    int i = 0;
+    for (SatirListesiNode *itr = yl->elementAt(current).data->head; itr != NULL; itr = itr->next)
     {
-        if (input.at(i) != ' ')
-        {
-            underlines.append(string(bosluk, ' '));
-            bosluk = 0;
-            cizgi++;
-            // underlines.push_back('-');
-        }
-        else
-        {
-            underlines.append(string(cizgi, '-'));
-            cizgi = 0;
-            bosluk++;
-        }
+        tmps << itr->data;
+
+        output << setw(offset(arrows)) << " " << itr << endl;
+
+        output << setw(offset(arrows)) << "|" << itr->data << setw(arrowLenght(arrows) - tmps.str().length()) << "|" << endl;
+
+        output << setw(offset(arrows)) << "|" << itr->next << "|" << endl;
+
+        tmps.str("");
     }
-    return underlines;
+
+    cout << output.str();
 }
 
 int SLB::offset(string arrow)
 {
-    return arrow.length();
+    // return arrow.length();
+    return arrow.find("^");
 }
 
-void SLB::draw(YoneticiListesi *yl, int whichSatirList, string arrows)
+int SLB::arrowLenght(string arrow)
 {
-    // test-looks like this
-    cout << setw(offset(arrows)) << "#adressOfSatir" << endl;
-    cout << setw(offset(arrows)) << "#|-----------|" << endl;
-    cout << setw(offset(arrows)) << "#|content    |" << endl;
-    cout << setw(offset(arrows)) << "#|-----------|" << endl;
-    cout << setw(offset(arrows)) << "#|nextAdress |" << endl;
-    cout << setw(offset(arrows)) << "#" << endl;
-    cout << setw(offset(arrows)) << "#adressOfSatir" << endl;
-    cout << setw(offset(arrows)) << "#|-----------|" << endl;
-    cout << setw(offset(arrows)) << "#|content    |" << endl;
-    cout << setw(offset(arrows)) << "#|-----------|" << endl;
-    cout << setw(offset(arrows)) << "#|nextAdress |" << endl;
+    return arrow.length() - (arrow.find("^") + 2);
+}
+
+void SLB::draw(YoneticiListesi *yl, int whichSatirList, int page, string arrows)
+{
+    creator(yl, whichSatirList, page, arrows);
 }
 SLB::~SLB()
 {

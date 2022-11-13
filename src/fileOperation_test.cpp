@@ -33,14 +33,12 @@ int main()
         char ch;
 
         system("cls");
-        cout << maxSelectionOfCurrentPage << endl;
-
         if (page == lastPage)
             isLastPage = true;
         tb.draw(page, isLastPage);
         yb.draw(content->YoneticiList, page);
         la.draw(&yb, selection);
-        sb.draw(content->YoneticiList, selection, la.arrowLine);
+        sb.draw(content->YoneticiList, selection, page, la.arrowLine);
         cin >> ch;
         // controll of inter pages.
         if (ch == 'a' && page != 1)
