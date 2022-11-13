@@ -30,7 +30,6 @@ int main()
     while (true)
     {
         content->putInOrder();
-        content->swap(content->YoneticiList);
         char ch;
 
         system("cls");

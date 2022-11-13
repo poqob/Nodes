@@ -16,36 +16,27 @@ private:
 public:
     SLB();
     void draw(YoneticiListesi *, int, string);
-    string createNextAdress(int);
-    string findAdress(int, YoneticiListesi *);
+    string createNextAdress(int);    // TODO
+    string createContent(int);       // TODO
+    string createCurrentAdress(int); // TODO
+    SatirListesi *findAdress(int, int, YoneticiListesi *);
     string createUnderline(string);
+
     ~SLB();
 };
 
 SLB::SLB() {}
 
-void SLB::draw(YoneticiListesi *yl, int whichSatirList, string arrows)
+SatirListesi *SLB::findAdress(int pageNum, int selection, YoneticiListesi *yl)
 {
-}
-
-string SLB::findAdress(int pageNum, YoneticiListesi *yl)
-{
-    stringstream result;
-    string output;
+    int elementAt = ((pageNum - 1) * 8) + selection;
     int i = 0;
-    for (YoneticiListesiNode *itr = yl->head; itr != NULL; itr = itr->next)
+    SatirListesi *satirListesiAdresi;
+    for (YoneticiListesiNode *itr = yl->head; itr != NULL, i < elementAt; itr = itr->next, i++)
     {
-        result << " " << itr->next->data << "     ";
-        i++;
-        if (i % 8 == 0)
-            result << endl;
+        satirListesiAdresi = itr->data;
     }
-    result << endl;
-    for (int j = 0; j < pageNum; j++)
-    {
-        getline(result, output);
-    }
-    return output;
+    return satirListesiAdresi;
 }
 
 string SLB::createUnderline(string input)
@@ -72,6 +63,9 @@ string SLB::createUnderline(string input)
     return underlines;
 }
 
+void SLB::draw(YoneticiListesi *yl, int whichSatirList, string arrows)
+{
+}
 SLB::~SLB()
 {
 }
