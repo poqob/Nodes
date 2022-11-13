@@ -42,12 +42,13 @@ void Content::writing()
         cout << YoneticiList->elementAt(i).data << endl;
     }
 }
-// buradayız sıralama algoritması yazılacak :dddd
+// ortalamalara gore sirala
 void Content::putInOrder()
 {
+    // yonetici listesi düzeyinde satır listelerinin ayrı ayrı ortalama hesabı.
     // ortalamalara göre siraya koy.
     swap(YoneticiList);
-    // yonetici listesi düzeyinde satır listelerinin ayrı ayrı ortalama hesabı.
+
     for (int i = 0; i < YoneticiList->Count(); i++)
     {
         // cout << contentAvarageCalculator(YoneticiListesi->elementAt(i)) << endl;
@@ -56,8 +57,6 @@ void Content::putInOrder()
         // writing content's in desc order and list's list in desc averages order.
         // cout << *YoneticiListesi->elementAt(i) << " avg " << contentAvarageCalculator(YoneticiListesi->elementAt(i)) << endl;
     }
-
-    // cout << *YoneticiListesi->elementAt(3) << endl;
 }
 
 // satır listesi düzeyinde liste içeriklerinin ortalama hesabı
@@ -72,6 +71,7 @@ double Content::contentAvarageCalculator(SatirListesi *satirListesi)
     return avarage / satirListesi->Count();
 }
 
+// cizimini yaptigimiz buyuk kucuk yer degistirme algoritmasi. -satir listesi icin
 void Content::swapInRow(SatirListesi *satir)
 {
     // i kaçıncı periyotta olduğumuzu ifade ediyor.
@@ -89,7 +89,7 @@ void Content::swapInRow(SatirListesi *satir)
         }
     }
 }
-
+// cizimini yaptigimiz buyuk kucuk yer degistirme algoritmasi. -yonetici listesi icin
 void Content::swap(YoneticiListesi *yoneticiListesi)
 {
     int n = yoneticiListesi->Count() - 1;

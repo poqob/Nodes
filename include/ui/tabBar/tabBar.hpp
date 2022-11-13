@@ -14,8 +14,7 @@ private:
 
 public:
     void draw(int, bool);
-
-    TabBar(int, bool);
+    TabBar();
 };
 
 #endif // TABBAR

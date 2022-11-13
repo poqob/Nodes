@@ -153,8 +153,9 @@ string YLB::createAvarages(int pageNum, string prevLine)
     return output;
 }
 
-void YLB::draw(int pageNum)
+void YLB::draw(YoneticiListesi *yl, int pageNum)
 {
+    yoneticiListesi = yl;
     string adressOfCurrentYlNode = createAdresses(pageNum);
     string adressOfPrevNode = createPrevAdress(pageNum);
     string adressOfNextNode = createNextAdress(pageNum);
@@ -169,11 +170,11 @@ void YLB::draw(int pageNum)
     cout << createUnderline(adressOfNextNode) << endl;
     lastUnderLine = createUnderline(adressOfNextNode);
 }
-/*
+
 YLB::~YLB()
 {
-    delete this;
-}*/
+    // delete this;
+}
 
 /*
 Yonetici Liste yazdırma stili:

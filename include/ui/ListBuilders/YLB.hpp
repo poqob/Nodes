@@ -23,8 +23,8 @@ private:
 public:
     string lastUnderLine;
     YLB(YoneticiListesi *, int);
-    void draw(int);
-    //    ~YLB();
+    void draw(YoneticiListesi *, int);
+    ~YLB();
 };
 
 #endif // YONETICIBUILDER

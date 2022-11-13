@@ -1,8 +1,7 @@
 #include "../include/ui/tabBar/tabBar.hpp"
 
-TabBar::TabBar(int page, bool lastPage = false)
+TabBar::TabBar()
 {
-    draw(page, lastPage);
 }
 string
 TabBar::barArangement(int pageNum, bool lastPage)
