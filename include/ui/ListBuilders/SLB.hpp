@@ -19,6 +19,7 @@ public:
     string createNextAdress(int);    // TODO
     string createContent(int);       // TODO
     string createCurrentAdress(int); // TODO
+    int offset(string);
     SatirListesi *findAdress(int, int, YoneticiListesi *);
     string createUnderline(string);
 
@@ -63,8 +64,25 @@ string SLB::createUnderline(string input)
     return underlines;
 }
 
+int SLB::offset(string arrow)
+{
+    return arrow.length();
+}
+
 void SLB::draw(YoneticiListesi *yl, int whichSatirList, string arrows)
 {
+    // test-looks like this
+    cout << setw(offset(arrows)) << "#adressOfSatir" << endl;
+    cout << setw(offset(arrows)) << "#|-----------|" << endl;
+    cout << setw(offset(arrows)) << "#|content    |" << endl;
+    cout << setw(offset(arrows)) << "#|-----------|" << endl;
+    cout << setw(offset(arrows)) << "#|nextAdress |" << endl;
+    cout << setw(offset(arrows)) << "#" << endl;
+    cout << setw(offset(arrows)) << "#adressOfSatir" << endl;
+    cout << setw(offset(arrows)) << "#|-----------|" << endl;
+    cout << setw(offset(arrows)) << "#|content    |" << endl;
+    cout << setw(offset(arrows)) << "#|-----------|" << endl;
+    cout << setw(offset(arrows)) << "#|nextAdress |" << endl;
 }
 SLB::~SLB()
 {
