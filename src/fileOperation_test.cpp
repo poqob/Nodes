@@ -6,7 +6,8 @@
 #include "YoneticiListesi.cpp"
 #include "Tabbar.cpp"
 #include "YLB.cpp"
-#include "../include/ui/locactionArrow/locationArrow.hpp"
+#include "LocationArrow.cpp"
+#include "../include/ui/ListBuilders/SLB.hpp"
 using namespace std;
 int main()
 {
@@ -20,13 +21,16 @@ int main()
     int selection = 0;
     int maxSelectionOfCurrentPage = 7; // 0...7-total 8
     int lastPage = (content->YoneticiList->Count() % 8 == 0 ? 0 : 1) + content->YoneticiList->Count() / 8;
-    bool isLastPage = false;
+    bool isLastPage = page >= lastPage ? true : false;
+    TabBar tb = TabBar();
     YLB yb = YLB(content->YoneticiList, page);
-    TabBar tb = TabBar(page, isLastPage);
     LocationArrow la = LocationArrow();
+    SLB sb = SLB();
 
     while (true)
     {
+        content->putInOrder();
+        content->swap(content->YoneticiList);
         char ch;
 
         system("cls");
@@ -35,8 +39,9 @@ int main()
         if (page == lastPage)
             isLastPage = true;
         tb.draw(page, isLastPage);
-        yb.draw(page);
+        yb.draw(content->YoneticiList, page);
         la.draw(&yb, selection);
+        sb.draw(content->YoneticiList, selection, la.arrowLine);
         cin >> ch;
         // controll of inter pages.
         if (ch == 'a' && page != 1)
