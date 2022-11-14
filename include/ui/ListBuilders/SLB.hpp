@@ -7,6 +7,7 @@
 
 #include "../../list/YoneticiListesi.hpp"
 #include "sstream"
+#include "iomanip"
 
 class SLB
 {
@@ -16,14 +17,11 @@ private:
 public:
     SLB();
     void draw(YoneticiListesi *, int, int, string);
-    string createNextAdress(int);    // TODO
-    string createContent(int);       // TODO
-    string createCurrentAdress(int); // TODO
     int offset(string);
     int arrowLenght(string);
     void creator(YoneticiListesi *, int, int, string);
     SatirListesi *findAdress(int, int, YoneticiListesi *);
-    string createUnderline(string);
+    string createUnderline(int);
 
     ~SLB();
 };
@@ -42,17 +40,15 @@ SatirListesi *SLB::findAdress(int pageNum, int selection, YoneticiListesi *yl)
     return satirListesiAdresi;
 }
 
-string SLB::createUnderline(string input)
+string SLB::createUnderline(int lenght)
 {
-    stringstream result;
-    result << string("-", (arrowLenght(input))) << endl;
-    return result.str();
+    return string(lenght + 2, '-');
 }
 
 // we will make new underline method, old one screwed it up.
-// TODO: update createUnderLine methods.
-//  ..gain more true format
-// ..last page's yonetici listesi draw problem still remains.
+// TODO: update createUnderLine methods.-done
+//  ..gain more true format-done
+// ..last page's yonetici listesi draw problem still remains.- working on.
 
 void SLB::creator(YoneticiListesi *yl, int whichSatirList, int page, string arrows)
 {
@@ -65,12 +61,13 @@ void SLB::creator(YoneticiListesi *yl, int whichSatirList, int page, string arro
     {
         tmps << itr->data;
 
-        output << setw(offset(arrows)) << " " << itr << endl;
-
-        output << setw(offset(arrows)) << "|" << itr->data << setw(arrowLenght(arrows) - tmps.str().length()) << "|" << endl;
-
-        output << setw(offset(arrows)) << "|" << itr->next << "|" << endl;
-
+        output << setw(offset(arrows) + 1) << " " << itr << endl;
+        output << setw(offset(arrows) + arrowLenght(arrows) + 2) << createUnderline(arrowLenght(arrows)) << endl;
+        output << setw(offset(arrows) + 1) << "|" << itr->data << setw(arrowLenght(arrows) - tmps.str().length() + 1) << "|" << endl;
+        output << setw(offset(arrows) + arrowLenght(arrows) + 2) << createUnderline(arrowLenght(arrows)) << endl;
+        output << setw(offset(arrows) + 1) << "|" << itr->next << "|" << endl;
+        output << setw(offset(arrows) + arrowLenght(arrows) + 2) << createUnderline(arrowLenght(arrows)) << endl;
+        output << endl;
         tmps.str("");
     }
 
