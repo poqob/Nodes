@@ -1,4 +1,7 @@
-#include "../../include/other/actions.hpp"
+#include "../../../include/other/Actions.hpp"
+
+bool Actions::breakStatement = false; // it will break while loop when it has true value.
+
 // takes inputs as reference, via that reference controll method can access and controll our inputs.
 void Actions::controll(char &ch, int &page, int &selection, int &maxSelectionOfCurrentPage, int &lastPage, bool &isLastPage, Content *content)
 {
@@ -61,8 +64,7 @@ void Actions::controll(char &ch, int &page, int &selection, int &maxSelectionOfC
         SatirListesi *cuurrent = content->YoneticiList->elementAt((page - 1) * 8 + selection).data;
         if (cuurrent->Count() <= 1)
         {
-            content->YoneticiList->elementAt((page - 1) * 8 + selection).data->~SatirListesi();
-            content->YoneticiList->removeAt((page - 1) * 8 + selection);
+
             if (content->YoneticiList->elementAt((page - 1) * 8 + selection).next == NULL && selection != 0)
                 selection -= 1;
             if (content->YoneticiList->elementAt((page - 1) * 8 + selection).next == NULL && selection == 0 && page != 1)
@@ -70,21 +72,38 @@ void Actions::controll(char &ch, int &page, int &selection, int &maxSelectionOfC
                 selection -= 1;
                 page -= 1;
             }
+            // Runing Destructor.
+            content->YoneticiList->elementAt((page - 1) * 8 + selection).data->~SatirListesi();
+            content->YoneticiList->removeAt((page - 1) * 8 + selection);
         }
-        else
+        else // deleting random satirListesiNode according to cuurrent.count
             cuurrent->removeAt(rand() % cuurrent->Count());
+        // Runing Destructor.
+        if (content->YoneticiList->isEmpty())
+        {
+            system("cls");
+            cout << "*Listeler Bosaldi." << endl;
+            Actions::breakStatement = !Actions::breakStatement;
+        }
     }
     // delete yoneticiListesiNode from yoneticiListesi
     if (ch == 'p')
     {
-        content->YoneticiList->elementAt((page - 1) * 8 + selection).data->~SatirListesi();
-        content->YoneticiList->removeAt((page - 1) * 8 + selection);
         if (content->YoneticiList->elementAt((page - 1) * 8 + selection).next == NULL && selection != 0)
             selection -= 1;
         if (content->YoneticiList->elementAt((page - 1) * 8 + selection).next == NULL && selection == 0 && page != 1)
         {
             selection -= 1;
             page -= 1;
+        }
+        content->YoneticiList->elementAt((page - 1) * 8 + selection).data->~SatirListesi();
+        content->YoneticiList->removeAt((page - 1) * 8 + selection);
+        // Runing Destructor.
+        if (content->YoneticiList->isEmpty())
+        {
+            system("cls");
+            cout << "*Listeler Bosaldi." << endl;
+            Actions::breakStatement = !Actions::breakStatement;
         }
     }
 }

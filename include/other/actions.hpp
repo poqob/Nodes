@@ -14,6 +14,7 @@ class Actions
 {
 public:
     static void controll(char &, int &, int &, int &, int &, bool &, Content *);
+    static bool breakStatement;
 };
 
 #endif // ACTIONS
