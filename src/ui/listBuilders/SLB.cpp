@@ -11,18 +11,22 @@ void SLB::draw(YoneticiListesi *yl, int whichSatirList, int page, string arrows)
 {
     stringstream output;
     stringstream tmps;
-    string tmp;
+    // for null controlling
+    string tmp1;
+    stringstream tmps1;
     int current = (page - 1) * 8 + whichSatirList;
     int i = 0;
     for (SatirListesiNode *itr = yl->elementAt(current).data->head; itr != NULL; itr = itr->next)
     {
         tmps << itr->data;
-
+        tmps1 << itr->next;
+        tmp1 = tmps1.str() == "0" ? "00000000" : tmps1.str();
+        tmps1.str("");
         output << setw(offset(arrows) + 1) << " " << itr << endl;
         output << setw(offset(arrows) + arrowLenght(arrows) + 2) << createUnderline(arrowLenght(arrows)) << endl;
         output << setw(offset(arrows) + 1) << "|" << itr->data << setw(arrowLenght(arrows) - tmps.str().length() + 1) << "|" << endl;
         output << setw(offset(arrows) + arrowLenght(arrows) + 2) << createUnderline(arrowLenght(arrows)) << endl;
-        output << setw(offset(arrows) + 1) << "|" << itr->next << "|" << endl;
+        output << setw(offset(arrows) + 1) << "|" << tmp1 << "|" << endl;
         output << setw(offset(arrows) + arrowLenght(arrows) + 2) << createUnderline(arrowLenght(arrows)) << endl;
         output << endl;
         tmps.str("");

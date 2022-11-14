@@ -16,26 +16,6 @@ double YLB::averageCalculator(SatirListesi *satirListesi)
     return average / satirListesi->Count();
 }
 
-string YLB::createAdresses(int pageNum)
-{
-    stringstream result;
-    string output;
-    int i = 0;
-    for (YoneticiListesiNode *itr = yoneticiListesi->head; itr != NULL; itr = itr->next)
-    {
-        result << " " << itr->next << "     ";
-        i++;
-        if (i % 8 == 0)
-            result << endl;
-    }
-    result << endl;
-    for (int j = 0; j < pageNum; j++)
-    {
-        getline(result, output);
-    }
-    return output;
-}
-
 string YLB::createUnderline(string input)
 {
     string underlines = "";
@@ -59,16 +39,41 @@ string YLB::createUnderline(string input)
     }
     return underlines;
 }
+// TODO: knks burayı zortlatmalıyız sıkıntı var
+string YLB::createAdresses(int pageNum)
+{
+    stringstream result;
+    string output;
+    int i = 0;
+    for (YoneticiListesiNode *itr = yoneticiListesi->head; itr != NULL; itr = itr->next)
+    {
+        result << " " << itr << "     ";
+        i++;
+        if (i % 8 == 0)
+            result << endl;
+    }
+    result << endl;
+    for (int j = 0; j < pageNum; j++)
+    {
+        getline(result, output);
+    }
+    return output;
+}
 
 string YLB::createPrevAdress(int pageNum)
 {
     stringstream result;
     string output;
+    stringstream tmp;
+    string tmps = "";
     int i = 0;
-    for (YoneticiListesiNode *itr = yoneticiListesi->head->next; itr != NULL; itr = itr->next)
+    for (YoneticiListesiNode *itr = yoneticiListesi->head; itr != NULL; itr = itr->next)
     {
-        result << "|" << itr->prev << "|"
+        tmp << itr->prev;
+        tmps = tmp.str() == "0" ? "00000000" : tmp.str();
+        result << "|" << tmps << "|"
                << "    ";
+        tmp.str("");
         i++;
         if (i % 8 == 0)
             result << endl;
@@ -85,10 +90,16 @@ string YLB::createNextAdress(int pageNum)
 {
     stringstream result;
     string output;
+    stringstream tmps;
+    string tmp;
     int i = 0;
-    for (YoneticiListesiNode *itr = yoneticiListesi->head->next; itr != NULL; itr = itr->next)
+    for (YoneticiListesiNode *itr = yoneticiListesi->head; itr != NULL; itr = itr->next)
     {
-        result << "|" << itr->next << "|"
+        tmps << itr->next;
+        tmp = tmps.str() == "0" ? "00000000" : tmps.str();
+        tmps.str("");
+
+        result << "|" << tmp << "|"
                << "    ";
         i++;
         if (i % 8 == 0)
