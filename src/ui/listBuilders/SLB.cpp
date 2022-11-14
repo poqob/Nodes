@@ -7,11 +7,6 @@ string SLB::createUnderline(int lenght)
     return string(lenght + 2, '-');
 }
 
-// we will make new underline method, old one screwed it up.
-// TODO: update createUnderLine methods.-done
-//  ..gain more true format-done
-// ..last page's yonetici listesi draw problem still remains.- working on.
-
 void SLB::draw(YoneticiListesi *yl, int whichSatirList, int page, string arrows)
 {
     stringstream output;

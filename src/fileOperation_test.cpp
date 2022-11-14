@@ -8,7 +8,7 @@
 #include "ui/listBuilders/YLB.cpp"
 #include "ui/listBuilders/SLB.cpp"
 #include "ui/locationArrow/LocationArrow.cpp"
-
+#include "components/other/Actions.cpp"
 using namespace std;
 int main()
 {
@@ -30,10 +30,12 @@ int main()
 
     while (true)
     {
-        content->putInOrder();
         char ch;
-
+        lastPage = (content->YoneticiList->Count() % 8 == 0 ? 0 : 1) + content->YoneticiList->Count() / 8;
+        isLastPage = page >= lastPage ? true : false;
+        content->putInOrder();
         system("cls");
+        cout << content->YoneticiList->Count() << endl;
         if (page == lastPage)
             isLastPage = true;
         tb.draw(page, isLastPage);
@@ -41,53 +43,8 @@ int main()
         la.draw(&yb, selection);
         sb.draw(content->YoneticiList, selection, page, la.arrowLine);
         cin >> ch;
-        // controll of inter pages.
-        if (ch == 'a' && page != 1)
-        {
-            page--;
-            selection = maxSelectionOfCurrentPage;
-            isLastPage = false;
-        }
-        else if (ch == 'd')
-        {
-            if (page == lastPage)
-            {
-                isLastPage = true;
-                continue;
-            }
-            else
-            {
-                isLastPage = false;
-                page++;
-            }
-            selection = 0;
-        }
-        // controll of inter selection TODO: not 8, one page may have elements less than 8.
-        if (ch == 'c' && selection != maxSelectionOfCurrentPage)
-        {
-            selection++;
-        }
-        else if (ch == 'z' && selection != 0)
-        {
-            selection--;
-        }
-        else if (ch == 'c' && selection == maxSelectionOfCurrentPage)
-        {
-            if (page != lastPage)
-            {
-                page++;
-                selection = 0;
-            }
-        }
-        else if (ch == 'z' && selection == 0)
-        {
-            if (page - 1 != 0)
-            {
-                page--;
-                selection = maxSelectionOfCurrentPage;
-            }
-        }
-        maxSelectionOfCurrentPage = (content->YoneticiList->Count() - 8 * (page - 1) >= 7 ? 7 : (8 - abs(content->YoneticiList->Count() - 8 * page)) - 1);
+        // Controlls the character input-ch
+        Actions::controll(ch, page, selection, maxSelectionOfCurrentPage, lastPage, isLastPage, content);
     }
 
     content->~Content();
