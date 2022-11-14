@@ -1,13 +1,14 @@
 #include <iostream>
-#include "Converter.cpp"
-#include "Content.cpp"
-#include "StringMethod.cpp"
-#include "SatirListesi.cpp"
-#include "YoneticiListesi.cpp"
-#include "Tabbar.cpp"
-#include "YLB.cpp"
-#include "LocationArrow.cpp"
-#include "../include/ui/ListBuilders/SLB.hpp"
+#include "components/other/Converter.cpp"
+#include "components/other/Content.cpp"
+#include "components/other/StringMethod.cpp"
+#include "components/lists/SatirListesi.cpp"
+#include "components/lists/YoneticiListesi.cpp"
+#include "ui/tabbar/tabBar.cpp"
+#include "ui/listBuilders/YLB.cpp"
+#include "ui/listBuilders/SLB.cpp"
+#include "ui/locationArrow/LocationArrow.cpp"
+
 using namespace std;
 int main()
 {
