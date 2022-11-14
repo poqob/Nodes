@@ -1,78 +1,71 @@
-#include "../include/list/YoneticiListesi.hpp"
-
+#include "../../../include/list/SatirListesi.hpp"
 using namespace std;
-YoneticiListesi::YoneticiListesi()
-{
-    head = NULL;
-    size = 0;
-};
-
-YoneticiListesiNode *YoneticiListesi::FindPreviousByPosition(int index)
+SatirListesiNode *SatirListesi::FindPreviousByPosition(int index)
 {
     if (index < 0 || index > size)
         throw "No Such Element";
-    YoneticiListesiNode *prv = head;
+    SatirListesiNode *prv = head;
     int i = 1;
-    for (YoneticiListesiNode *itr = head; itr->next != NULL && i != index; itr = itr->next, i++)
+    for (SatirListesiNode *itr = head; itr->next != NULL && i != index; itr = itr->next, i++)
     {
         prv = prv->next;
     }
     return prv;
 }
 
-int YoneticiListesi::Count() const
+SatirListesi::SatirListesi()
+{
+    head = NULL;
+    size = 0;
+}
+
+int SatirListesi::Count() const
 {
     return size;
 }
-
-bool YoneticiListesi::isEmpty() const
+bool SatirListesi::isEmpty() const
 {
     return size == 0;
 }
-
-void YoneticiListesi::add(SatirListesi *&item)
+void SatirListesi::add(const int &item)
 {
     insert(size, item);
 }
-
-void YoneticiListesi::insert(int index, SatirListesi *&item)
+void SatirListesi::insert(int index, const int &item)
 {
     if (index < 0 || index > size)
         throw "Index out of Range";
     if (index == 0)
     {
-        head = new YoneticiListesiNode(item, head);
+        head = new SatirListesiNode(item, head);
         if (head->next != NULL)
             head->next->prev = head;
     }
     else
     {
-        YoneticiListesiNode *prv = FindPreviousByPosition(index);
-        prv->next = new YoneticiListesiNode(item, prv->next, prv);
+        SatirListesiNode *prv = FindPreviousByPosition(index);
+        prv->next = new SatirListesiNode(item, prv->next, prv);
         if (prv->next->next != NULL)
             prv->next->next->prev = prv->next;
     }
     size++;
 }
-
-SatirListesi *&YoneticiListesi::first()
+const int &SatirListesi::first()
 {
     if (isEmpty())
         throw "No Such Element";
     return head->data;
 }
-
-SatirListesi *&YoneticiListesi::last()
+const int &SatirListesi::last()
 {
     if (isEmpty())
         throw "No Such Element";
     return FindPreviousByPosition(size)->data;
 }
-
-int YoneticiListesi::indexOf(const SatirListesi *&item)
+int SatirListesi::indexOf(const int &item)
 {
     int index = 0;
-    for (YoneticiListesiNode *itr = head; itr != NULL; itr = itr->next)
+    for (SatirListesiNode *itr = head; itr != NULL; itr = itr->next)
     {
         if (itr->data == item)
             return index;
@@ -80,18 +73,16 @@ int YoneticiListesi::indexOf(const SatirListesi *&item)
     }
     throw "No Such Element";
 }
-
-void YoneticiListesi::remove(const SatirListesi *&item)
+void SatirListesi::remove(const int &item)
 {
     int index = indexOf(item);
     removeAt(index);
 }
-
-void YoneticiListesi::removeAt(int index)
+void SatirListesi::removeAt(int index)
 {
     if (index < 0 || index >= size)
         throw "Index out of Range";
-    YoneticiListesiNode *del;
+    SatirListesiNode *del;
     if (index == 0)
     {
         del = head;
@@ -101,7 +92,7 @@ void YoneticiListesi::removeAt(int index)
     }
     else
     {
-        YoneticiListesiNode *prv = FindPreviousByPosition(index);
+        SatirListesiNode *prv = FindPreviousByPosition(index);
         del = prv->next;
         prv->next = del->next;
         if (del->next != NULL)
@@ -110,22 +101,20 @@ void YoneticiListesi::removeAt(int index)
     size--;
     delete del;
 }
-
-bool YoneticiListesi::find(const SatirListesi *&item)
+bool SatirListesi::find(const int &item)
 {
-    for (YoneticiListesiNode *itr = head; itr != NULL; itr = itr->next)
+    for (SatirListesiNode *itr = head; itr != NULL; itr = itr->next)
     {
         if (itr->data == item)
             return true;
     }
     return false;
 }
-
-void YoneticiListesi::reverse()
+void SatirListesi::reverse()
 {
-    for (YoneticiListesiNode *itr = head; itr != NULL;)
+    for (SatirListesiNode *itr = head; itr != NULL;)
     {
-        YoneticiListesiNode *tmp = itr->next;
+        SatirListesiNode *tmp = itr->next;
         itr->next = itr->prev;
         itr->prev = tmp;
         if (tmp == NULL)
@@ -136,18 +125,17 @@ void YoneticiListesi::reverse()
         itr = tmp;
     }
 }
-
 // siralama metodu-kucukten buyuge
-void YoneticiListesi::swap(int index1, int index2)
+void SatirListesi::swap(int index1, int index2)
 {
     if (index1 + 1 < 0 || index1 >= size)
         throw "No Such Element";
     if (index2 + 1 < 0 || index2 >= size)
         throw "No Such Element";
-    YoneticiListesiNode *tmp = new YoneticiListesiNode(0); // may it throws exception
+    SatirListesiNode *tmp = new SatirListesiNode(0);
 
-    YoneticiListesiNode *crnt1 = FindPreviousByPosition(index1 + 1);
-    YoneticiListesiNode *crnt2 = FindPreviousByPosition(index2 + 1);
+    SatirListesiNode *crnt1 = FindPreviousByPosition(index1 + 1);
+    SatirListesiNode *crnt2 = FindPreviousByPosition(index2 + 1);
     // cout << crnt1->data << " " << crnt2->data << endl;
     tmp->data = crnt1->data;
     crnt1->data = crnt2->data;
@@ -155,8 +143,7 @@ void YoneticiListesi::swap(int index1, int index2)
     // cout << crnt1->data << " " << crnt2->data << endl;
     delete tmp, crnt1, crnt2;
 }
-
-YoneticiListesiNode YoneticiListesi::elementAt(int index)
+const int &SatirListesi::elementAt(int index)
 {
     if (index < 0 || index >= size)
         throw "No Such Element";
@@ -164,29 +151,29 @@ YoneticiListesiNode YoneticiListesi::elementAt(int index)
         return head->data;
     return FindPreviousByPosition(index)->next->data;
 }
-
-void YoneticiListesi::clear()
+void SatirListesi::clear()
 {
     while (!isEmpty())
         removeAt(0);
 }
 
-void YoneticiListesi::printNodesFromPositionInReverseOrder(int index)
+void SatirListesi::printNodesFromPositionInReverseOrder(int index)
 {
     if (index < 0 || index >= size)
         throw "No Such Element";
-    for (YoneticiListesiNode *itr = FindPreviousByPosition(index + 1); itr != NULL; itr = itr->prev)
+    for (SatirListesiNode *itr = FindPreviousByPosition(index + 1); itr != NULL; itr = itr->prev)
     {
         cout << itr->data << " <-> ";
     }
-    cout << endl;
+
+    cout
+        << endl;
 }
-void YoneticiListesi::printReverseOrder()
+void SatirListesi::printReverseOrder()
 {
     printNodesFromPositionInReverseOrder(size - 1);
 }
-
-YoneticiListesi::~YoneticiListesi()
+SatirListesi::~SatirListesi()
 {
     clear();
 }

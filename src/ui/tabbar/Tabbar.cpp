@@ -1,4 +1,4 @@
-#include "../include/ui/tabBar/tabBar.hpp"
+#include "../../../include/ui/tabBar/tabBar.hpp"
 
 TabBar::TabBar()
 {

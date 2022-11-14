@@ -1,4 +1,4 @@
-#include "../include/other/StringMethod.hpp"
+#include "../../../include/other/StringMethod.hpp"
 #include <string.h>
 
 string StringMethod::trim(std::string clause)
