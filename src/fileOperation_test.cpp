@@ -16,7 +16,7 @@ int main()
     Content *content = new Content();
     // read data from file.
     converter->readingFromFile(content);
-
+    // oredering data
     content->putInOrder();
     int page = 1;
     int selection = 0;
@@ -28,14 +28,13 @@ int main()
     LocationArrow la = LocationArrow();
     SLB sb = SLB();
 
-    while (true)
+    while (!Actions::breakStatement)
     {
         char ch;
         lastPage = (content->YoneticiList->Count() % 8 == 0 ? 0 : 1) + content->YoneticiList->Count() / 8;
         isLastPage = page >= lastPage ? true : false;
         content->putInOrder();
         system("cls");
-        cout << content->YoneticiList->Count() << endl;
         if (page == lastPage)
             isLastPage = true;
         tb.draw(page, isLastPage);
