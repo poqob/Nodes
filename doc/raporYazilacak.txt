@@ -1,0 +1,7 @@
+
+
+
+makefile*
+
+
+lib dosyasına .o lar yazılacak
