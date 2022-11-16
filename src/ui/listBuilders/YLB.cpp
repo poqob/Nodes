@@ -1,3 +1,11 @@
+/*
+ * @YLB.cpp-yonetici listesi builder
+ * @cift yonlu bagli liste uygulamasi
+ * @Veri Yapilari 1.Ogretim
+ * @odev 1
+ * @06.11.2022
+ * @Mustafa BICER mustafa.bicer1@ogr.sakarya.edu.tr
+ */
 #include "../../../include/ui/ListBuilders/YLB.hpp"
 
 YLB::YLB(YoneticiListesi *yoneticiListesi, int page)

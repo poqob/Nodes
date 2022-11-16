@@ -1,3 +1,11 @@
+/*
+ * @Actions.cpp
+ * @cift yonlu bagli liste uygulamasi
+ * @Veri Yapilari 1.Ogretim
+ * @odev 1
+ * @06.11.2022
+ * @Mustafa BICER mustafa.bicer1@ogr.sakarya.edu.tr
+ */
 #include "../../../include/other/Actions.hpp"
 
 bool Actions::breakStatement = false; // it will break while loop when it has true value.
