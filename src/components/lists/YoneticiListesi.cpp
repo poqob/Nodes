@@ -1,5 +1,5 @@
 #include "../../../include/list/YoneticiListesi.hpp"
-
+#include "YoneticiListesiNode.cpp"
 using namespace std;
 YoneticiListesi::YoneticiListesi()
 {

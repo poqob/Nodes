@@ -1,4 +1,4 @@
-#include "../../../include/ui/locactionArrow/LocationArrow.hpp"
+#include "../../../include/ui/locationArrow/LocationArrow.hpp"
 
 LocationArrow::LocationArrow()
 {

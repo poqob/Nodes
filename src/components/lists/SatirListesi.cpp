@@ -1,4 +1,5 @@
 #include "../../../include/list/SatirListesi.hpp"
+#include "SatirListesiNode.cpp"
 using namespace std;
 SatirListesiNode *SatirListesi::FindPreviousByPosition(int index)
 {
