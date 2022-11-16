@@ -12,12 +12,7 @@ public:
 	YoneticiListesiNode *next;
 	YoneticiListesiNode *prev;
 	double calculateAvarage;
-	YoneticiListesiNode(SatirListesi *data, YoneticiListesiNode *next = NULL, YoneticiListesiNode *prev = NULL)
-	{
-		this->data = data;
-		this->next = next;
-		this->prev = prev;
-	}
+	YoneticiListesiNode(SatirListesi *data, YoneticiListesiNode *next, YoneticiListesiNode *prev);
 };
 
 #endif

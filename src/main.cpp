@@ -1,8 +1,11 @@
 #include <iostream>
+//#include "components/lists/SatirListesiNode.cpp"
+//#include "components/lists/YoneticiListesiNode.cpp"
 #include "components/other/Converter.cpp"
 #include "components/other/Content.cpp"
 #include "components/other/StringMethod.cpp"
 #include "components/lists/SatirListesi.cpp"
+
 #include "components/lists/YoneticiListesi.cpp"
 #include "ui/tabbar/tabBar.cpp"
 #include "ui/listBuilders/YLB.cpp"
