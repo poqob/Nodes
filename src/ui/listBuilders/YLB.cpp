@@ -6,14 +6,18 @@
  * @06.11.2022
  * @Mustafa BICER mustafa.bicer1@ogr.sakarya.edu.tr
  */
+
+/*
+YLB, Yonetici Listesini yazdırmaktadır. YLB writes yonetici Listesi -yonetici listesi builder-
+*/
 #include "../../../include/ui/ListBuilders/YLB.hpp"
 
 YLB::YLB(YoneticiListesi *yoneticiListesi, int page)
 {
     this->yoneticiListesi = yoneticiListesi;
-    // draw(page);
 }
 
+// it calculates and returns avarage of its parameter-SatirListesi
 double YLB::averageCalculator(SatirListesi *satirListesi)
 {
     double average = 0;
@@ -24,6 +28,7 @@ double YLB::averageCalculator(SatirListesi *satirListesi)
     return average / satirListesi->Count();
 }
 
+// it basicly creates '-' line series for dividing rows from each other.
 string YLB::createUnderline(string input)
 {
     string underlines = "";
@@ -47,7 +52,7 @@ string YLB::createUnderline(string input)
     }
     return underlines;
 }
-// TODO: knks burayı zortlatmalıyız sıkıntı var
+// produce current yoneticiListesiNode's adress.
 string YLB::createAdresses(int pageNum)
 {
     stringstream result;
@@ -68,6 +73,7 @@ string YLB::createAdresses(int pageNum)
     return output;
 }
 
+// This method produces current yoneticiListesiNode's previous yoneticiListesiNode adress.
 string YLB::createPrevAdress(int pageNum)
 {
     stringstream result;
@@ -78,7 +84,8 @@ string YLB::createPrevAdress(int pageNum)
     for (YoneticiListesiNode *itr = yoneticiListesi->head; itr != NULL; itr = itr->next)
     {
         tmp << itr->prev;
-        tmps = tmp.str() == "0" ? "00000000" : tmp.str();
+        // tmps = tmp.str() == "0" ? "00000000" : tmp.str();
+        tmps = i == 0 ? "00000000" : tmp.str(); // i done that because, the above line produces a number with 16-17 steps and it breaks the program.
         result << "|" << tmps << "|"
                << "    ";
         tmp.str("");
@@ -93,7 +100,7 @@ string YLB::createPrevAdress(int pageNum)
     }
     return output;
 }
-
+// produce-create current yoneticiListesiNode's next node adress.
 string YLB::createNextAdress(int pageNum)
 {
     stringstream result;

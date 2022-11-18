@@ -95,7 +95,6 @@ void Actions::controll(char &ch, int &page, int &selection, int &maxSelectionOfC
                 {
                     /* code */
                 }
-
                 else
                     deleteNode(page, selection, content);
 
@@ -115,7 +114,6 @@ void Actions::controll(char &ch, int &page, int &selection, int &maxSelectionOfC
             SatirListesi *cuurrent = yln.data; // temporary variable, its purpose is prevent code repeat.
             if (cuurrent->Count() <= 1)
             {
-
                 if (yln.next == NULL && selection != 0)
                 {
                     deleteNode(page, selection, content);
@@ -149,16 +147,21 @@ void Actions::controll(char &ch, int &page, int &selection, int &maxSelectionOfC
         if (ch == 'p')
         {
             int index = (page - 1) * 8 + selection;
-
-            if (content->YoneticiList->elementAt(index).next == NULL && selection != 0)
+            YoneticiListesiNode yln = content->YoneticiList->elementAt(index);
+            if (yln.next == NULL && selection != 0)
             {
                 deleteNode(page, selection, content);
                 selection -= 1;
             }
-            else if (content->YoneticiList->elementAt(index).next == NULL && selection == 0 && page != 1)
+            else if (yln.next == NULL && selection == 0 && yln.prev != NULL)
             {
                 deleteNode(page, selection, content);
                 // selection -= 1;
+                page -= 1;
+            }
+            else if (yln.next == NULL && selection == maxSelectionOfCurrentPage) // BURADA kaldık UYKUM geldi
+            {
+                deleteNode(page, selection, content);
                 page -= 1;
             }
             else
