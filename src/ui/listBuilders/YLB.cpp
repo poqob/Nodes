@@ -127,16 +127,24 @@ string YLB::createNextAdress(int pageNum)
     }
     return output;
 }
-// adres uzunluguna aglı olarak problem cikabilir.
+// callculating and creating(in format) avarages of each YoneticiListesiNode~SatirListesi
+/*
+ *how it works?
+ *this method firstly dedects previous line's spaces in order to create boundary of new line's adress areas.
+ *bounds with '|'.
+ *after that process, it scans itself in third for loop, to calculate and write averages to the propper locations.
+ *after writing averages it fills gaps' -if there is- and finishes the adress section with '|' sign.
+ */
 string YLB::createAvarages(int pageNum, string prevLine)
 {
 
     // satir listesi ortalamalarini yazdiracağimiz bolmenin/satirin genislik oryantasyonu.
+    // the width oriantation of satir listesi.
     stringstream result;
     string output;
     result << "|";
 
-    // sag '|' karakterleri yaratan metot.
+    // sag '|' karakterleri yaratan dongu.
     for (int k = 1; k < prevLine.length(); k++)
     {
 
@@ -179,6 +187,7 @@ string YLB::createAvarages(int pageNum, string prevLine)
     return output;
 }
 
+// Lets combine methods that were above.
 void YLB::draw(YoneticiListesi *yl, int pageNum)
 {
     yoneticiListesi = yl;

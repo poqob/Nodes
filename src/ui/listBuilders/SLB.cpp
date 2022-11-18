@@ -13,18 +13,18 @@
 using namespace std;
 SLB::SLB() {}
 
-std::string SLB::createUnderline(int lenght)
+string SLB::createUnderline(int lenght)
 {
-    return std::string(lenght + 2, '-');
+    return string(lenght + 2, '-');
 }
 
 void SLB::draw(YoneticiListesi *yl, int whichSatirList, int page, std::string arrows)
 {
-    std::stringstream output;
-    std::stringstream tmps;
+    stringstream output;
+    stringstream tmps;
     // for null controlling
-    std::string tmp1;
-    std::stringstream tmps1;
+    string tmp1;
+    stringstream tmps1;
     int current = (page - 1) * 8 + whichSatirList;
     int i = 0;
     int arrowLenghtTmp = 0;
