@@ -8,7 +8,7 @@ class YoneticiListesi
 {
 private:
     int size;
-    YoneticiListesiNode *FindPreviousByPosition(int index);
+    YoneticiListesiNode *FindPreviousByPosition(int);
 
 public:
     YoneticiListesiNode *head;
@@ -16,21 +16,21 @@ public:
     YoneticiListesi();
     int Count() const;
     bool isEmpty() const;
-    void add(SatirListesi *&item);
-    void insert(int index, SatirListesi *&item);
+    void add(SatirListesi *&);
+    void insert(int index, SatirListesi *&);
     SatirListesi *&first();
     SatirListesi *&last();
-    int indexOf(const SatirListesi *&item);
-    void remove(const SatirListesi *&item);
-    void removeAt(int index);
-    bool find(const SatirListesi *&item);
+    int indexOf(const SatirListesi *&);
+    void remove(const SatirListesi *&);
+    void removeAt(int);
+    bool find(const SatirListesi *&);
     void reverse();
     // siralama metodu-kucukten buyuge
-    void swap(int index1, int index2);
-    YoneticiListesiNode elementAt(int index);
+    void swap(int, int);
+    YoneticiListesiNode elementAt(int);
     void clear();
     // friend ostream &operator<<(ostream &screen, YoneticiListesi &rgt);
-    void printNodesFromPositionInReverseOrder(int index);
+    void printNodesFromPositionInReverseOrder(int);
     void printReverseOrder();
     ~YoneticiListesi();
 };

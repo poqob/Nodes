@@ -2,7 +2,7 @@
 #define SATIRLISTESI
 
 #include "SatirListesiNode.hpp"
-
+#include <iomanip>
 class SatirListesi
 {
 private:
@@ -28,9 +28,7 @@ public:
     void swap(int index1, int index2);
     const int &elementAt(int index);
     void clear();
-    friend ostream &operator<<(ostream &screen, SatirListesi &rgt);
-    void printNodesFromPositionInReverseOrder(int index);
-    void printReverseOrder();
+    friend std::ostream &operator<<(std::ostream &screen, SatirListesi &rgt);
     ~SatirListesi();
 };
 

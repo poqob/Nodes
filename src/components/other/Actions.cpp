@@ -6,7 +6,7 @@
  * @06.11.2022
  * @Mustafa BICER mustafa.bicer1@ogr.sakarya.edu.tr
  */
-#include "../../../include/other/Actions.hpp"
+#include "Actions.hpp"
 
 bool Actions::breakStatement = false; // it will break while loop when it has true value.
 char Actions::tempChar = ' ';
@@ -80,7 +80,7 @@ void Actions::controll(char &ch, int &page, int &selection, int &maxSelectionOfC
             // ZORT STATİON
             if (Actions::tempChar == ch)
             {
-                if (yln.next == NULL && selection != 0)
+                if (yln.next == NULL && selection < maxSelectionOfCurrentPage)
                 {
                     deleteNode(page, selection, content);
                     selection -= 1;
@@ -91,6 +91,11 @@ void Actions::controll(char &ch, int &page, int &selection, int &maxSelectionOfC
                     // selection -= 1;
                     page -= 1;
                 }
+                else if (yln.next == NULL && selection == maxSelectionOfCurrentPage) // BURADA kaldık UYKUM geldi
+                {
+                    /* code */
+                }
+
                 else
                     deleteNode(page, selection, content);
 
@@ -143,13 +148,14 @@ void Actions::controll(char &ch, int &page, int &selection, int &maxSelectionOfC
         // delete yoneticiListesiNode from yoneticiListesi
         if (ch == 'p')
         {
+            int index = (page - 1) * 8 + selection;
 
-            if (content->YoneticiList->elementAt((page - 1) * 8 + selection).next == NULL && selection != 0)
+            if (content->YoneticiList->elementAt(index).next == NULL && selection != 0)
             {
                 deleteNode(page, selection, content);
                 selection -= 1;
             }
-            else if (content->YoneticiList->elementAt((page - 1) * 8 + selection).next == NULL && selection == 0 && page != 1)
+            else if (content->YoneticiList->elementAt(index).next == NULL && selection == 0 && page != 1)
             {
                 deleteNode(page, selection, content);
                 // selection -= 1;
@@ -175,6 +181,7 @@ void Actions::controll(char &ch, int &page, int &selection, int &maxSelectionOfC
 
 void Actions::deleteNode(int &page, int &selection, Content *content)
 {
-    content->YoneticiList->elementAt((page - 1) * 8 + selection).data->~SatirListesi();
-    content->YoneticiList->removeAt((page - 1) * 8 + selection);
+    int index = (page - 1) * 8 + selection;
+    content->YoneticiList->elementAt(index).data->~SatirListesi();
+    content->YoneticiList->removeAt(index);
 }

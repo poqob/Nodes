@@ -1,9 +1,7 @@
 #ifndef YONETICILISTESINODE
 #define YONETICILISTESINODE
 
-#include <iostream>
 #include "SatirListesi.hpp"
-using namespace std;
 
 class YoneticiListesiNode
 {
@@ -12,7 +10,9 @@ public:
 	YoneticiListesiNode *next;
 	YoneticiListesiNode *prev;
 	double calculateAvarage;
-	YoneticiListesiNode(SatirListesi *data, YoneticiListesiNode *next, YoneticiListesiNode *prev);
+	YoneticiListesiNode(SatirListesi *, YoneticiListesiNode *, YoneticiListesiNode *);
+	YoneticiListesiNode(SatirListesi *, YoneticiListesiNode *);
+	YoneticiListesiNode(SatirListesi *);
 };
 
 #endif

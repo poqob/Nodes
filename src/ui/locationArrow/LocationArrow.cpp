@@ -7,7 +7,6 @@
  * @Mustafa BICER mustafa.bicer1@ogr.sakarya.edu.tr
  */
 #include "../../../include/ui/locationArrow/LocationArrow.hpp"
-
 LocationArrow::LocationArrow()
 {
 }
@@ -36,7 +35,7 @@ void LocationArrow::draw(YLB *y, int wantedSection)
     }
     arrow.insert(0, string(loc, ' '));
     arrowLine = arrow; // according to this locArrowLine we will create SatirListesi Objects.
-    cout << arrow << endl;
+    std::cout << arrow << std::endl;
 }
 
 LocationArrow::~LocationArrow()

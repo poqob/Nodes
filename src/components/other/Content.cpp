@@ -7,6 +7,8 @@
  * @Mustafa BICER mustafa.bicer1@ogr.sakarya.edu.tr
  */
 #include "../../../include/other/Content.hpp"
+#include <iostream>
+#include <fstream>
 
 Content::Content()
 {
@@ -16,7 +18,7 @@ Content::Content()
 
 Content::~Content()
 {
-    // clearing-freed satir list members
+    // clearing-freed satir lists
     for (int i = 0; i < YoneticiList->Count(); i++)
     {
         YoneticiList->elementAt(i).data->~SatirListesi();
@@ -40,14 +42,14 @@ void Content::writingAllElements()
 {
     for (int i = 0; i < YoneticiList->Count(); i++)
     {
-        cout << *YoneticiList->elementAt(i).data << " avg " << contentAvarageCalculator(YoneticiList->elementAt(i).data) << endl;
+        std::cout << *YoneticiList->elementAt(i).data << " avg " << contentAvarageCalculator(YoneticiList->elementAt(i).data) << std::endl;
     }
 }
 void Content::writing()
 {
     for (int i = 0; i < YoneticiList->Count(); i++)
     {
-        cout << YoneticiList->elementAt(i).data << endl;
+        std::cout << YoneticiList->elementAt(i).data << std::endl;
     }
 }
 // ortalamalara gore sirala

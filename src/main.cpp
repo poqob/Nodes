@@ -6,20 +6,34 @@
  * @06.11.2022
  * @Mustafa BICER mustafa.bicer1@ogr.sakarya.edu.tr
  */
+/*
 #include <iostream>
-//#include "components/lists/SatirListesiNode.cpp"
+#include "components/lists/SatirListesiNode.cpp"
 //#include "components/lists/YoneticiListesiNode.cpp"
 #include "components/other/Converter.cpp"
 #include "components/other/Content.cpp"
-#include "components/other/StringMethod.cpp"
+//#include "components/other/StringMethod.cpp"
 #include "components/lists/SatirListesi.cpp"
-
 #include "components/lists/YoneticiListesi.cpp"
 #include "ui/tabbar/tabBar.cpp"
 #include "ui/listBuilders/YLB.cpp"
 #include "ui/listBuilders/SLB.cpp"
 #include "ui/locationArrow/LocationArrow.cpp"
 #include "components/other/Actions.cpp"
+*/
+#include "../include/list/SatirListesiNode.hpp"
+#include "../include/list/YoneticiListesiNode.hpp"
+#include "../include/other/Converter.hpp"
+#include "../include/other/Content.hpp"
+#include "../include/other/StringMethod.hpp"
+#include "../include/list/SatirListesi.hpp"
+#include "../include/list/YoneticiListesi.hpp"
+#include "../include/ui/tabBar/tabBar.hpp"
+#include "../include/ui/ListBuilders/YLB.hpp"
+#include "../include/ui/ListBuilders/SLB.hpp"
+#include "../include/ui/locationArrow/LocationArrow.hpp"
+#include "../include/other/Actions.hpp"
+
 using namespace std;
 int main()
 {

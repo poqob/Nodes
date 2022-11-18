@@ -5,7 +5,6 @@
 #include "iostream"
 #include "iomanip"
 #include "sstream"
-#include "../ostreams/ostream.cpp"
 #include "../../list/YoneticiListesi.hpp"
 using namespace std;
 

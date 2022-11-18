@@ -7,6 +7,10 @@
  * @Mustafa BICER mustafa.bicer1@ogr.sakarya.edu.tr
  */
 #include "../../../include/other/Converter.hpp"
+#include "StringMethod.hpp"
+#include <string>
+#include "fstream"
+
 using namespace std;
 
 Converter::Converter()
@@ -53,7 +57,8 @@ void Converter::readingFromFile(Content *content)
     string temp0;
     fstream read;
     // open products.txt file in read mode
-    read.open("..//data//veriler.txt", ios::in);
+    // read.open("..//data//veriler.txt", ios::in);
+    read.open("data/veriler.txt", ios::in);
     // sayıları dosyadan satır satır okumak.
     while (getline(read, temp0))
     {

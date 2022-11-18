@@ -7,10 +7,19 @@
  * @Mustafa BICER, mustafa.bicer1@ogr.sakarya.edu.tr
  */
 #include "../../../include/list/YoneticiListesiNode.hpp"
-
-YoneticiListesiNode::YoneticiListesiNode(SatirListesi *data, YoneticiListesiNode *next = NULL, YoneticiListesiNode *prev = NULL)
+YoneticiListesiNode::YoneticiListesiNode(SatirListesi *data, YoneticiListesiNode *next, YoneticiListesiNode *prev)
 {
     this->data = data;
     this->next = next;
     this->prev = prev;
+}
+
+YoneticiListesiNode::YoneticiListesiNode(SatirListesi *data, YoneticiListesiNode *next)
+{
+    this->data = data;
+    this->next = next;
+}
+YoneticiListesiNode::YoneticiListesiNode(SatirListesi *data)
+{
+    this->data = data;
 }

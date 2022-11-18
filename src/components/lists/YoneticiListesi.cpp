@@ -7,7 +7,8 @@
  * @Mustafa BICER mustafa.bicer1@ogr.sakarya.edu.tr
  */
 #include "../../../include/list/YoneticiListesi.hpp"
-#include "YoneticiListesiNode.cpp"
+#include "YoneticiListesiNode.hpp"
+#include <iostream>
 using namespace std;
 YoneticiListesi::YoneticiListesi()
 {

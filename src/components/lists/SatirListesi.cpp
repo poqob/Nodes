@@ -8,7 +8,7 @@
  */
 
 #include "../../../include/list/SatirListesi.hpp"
-#include "SatirListesiNode.cpp"
+//#include "iostream"
 using namespace std;
 SatirListesiNode *SatirListesi::FindPreviousByPosition(int index)
 {
@@ -167,22 +167,16 @@ void SatirListesi::clear()
         removeAt(0);
 }
 
-void SatirListesi::printNodesFromPositionInReverseOrder(int index)
+std::ostream &operator<<(std::ostream &screen, SatirListesi &rgt)
 {
-    if (index < 0 || index >= size)
-        throw "No Such Element";
-    for (SatirListesiNode *itr = FindPreviousByPosition(index + 1); itr != NULL; itr = itr->prev)
+    for (SatirListesiNode *itr = rgt.head; itr != NULL; itr = itr->next)
     {
-        cout << itr->data << " <-> ";
+        screen << itr->data << " <-> ";
     }
+    screen << std::endl;
+    return screen;
+}
 
-    cout
-        << endl;
-}
-void SatirListesi::printReverseOrder()
-{
-    printNodesFromPositionInReverseOrder(size - 1);
-}
 SatirListesi::~SatirListesi()
 {
     clear();

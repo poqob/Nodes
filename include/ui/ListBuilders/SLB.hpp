@@ -2,9 +2,6 @@
 #define SATIRBUILDER
 
 #include "../../list/YoneticiListesi.hpp"
-#include "sstream"
-#include "iomanip"
-
 class SLB
 {
 private:
@@ -12,10 +9,10 @@ private:
 
 public:
     SLB();
-    void draw(YoneticiListesi *, int, int, string);
-    int offset(string);
-    int arrowLenght(string);
-    string createUnderline(int);
+    void draw(YoneticiListesi *, int, int, std::string);
+    int offset(std::string);
+    int arrowLenght(std::string);
+    std::string createUnderline(int);
     ~SLB();
 };
 #endif // SATIRBUILDER
