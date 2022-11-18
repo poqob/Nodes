@@ -18,6 +18,7 @@ string SLB::createUnderline(int lenght)
     return string(lenght + 2, '-');
 }
 
+// Satir listesi block
 void SLB::draw(YoneticiListesi *yl, int whichSatirList, int page, std::string arrows)
 {
     stringstream output;

@@ -82,6 +82,7 @@ double Content::contentAvarageCalculator(SatirListesi *satirListesi)
 }
 
 // cizimini yaptigimiz buyuk kucuk yer degistirme algoritmasi. -satir listesi icin
+// basitce satir icindeki her elemanı ardisik ikili seklinde ele alir kiyaslar ve yer degistirir ya da degistirmez ayni islemi siradakiler icin de defalarca(az defa) yapar.
 void Content::swapInRow(SatirListesi *satir)
 {
     // i kaçıncı periyotta olduğumuzu ifade ediyor.

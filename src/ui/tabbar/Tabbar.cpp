@@ -11,7 +11,7 @@
 TabBar::TabBar()
 {
 }
-string
+string // aranges bar according to pageNum and lastPage-bool-
 TabBar::barArangement(int pageNum, bool lastPage)
 {
     stringstream result;
@@ -29,7 +29,7 @@ TabBar::barArangement(int pageNum, bool lastPage)
     result << first.str() << setw(110 - first.str().length() - 4) << second;
     return result.str();
 }
-
+// drawing to screen.
 void TabBar::draw(int page, bool lastPage)
 {
     cout << barArangement(page, lastPage) << endl;

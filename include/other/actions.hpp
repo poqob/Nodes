@@ -14,10 +14,10 @@ using namespace std;
 class Actions
 {
 public:
-    static void controll(char &, int &, int &, int &, int &, bool &, Content *);
-    static void deleteNode(int &, int &, Content *);
-    static bool breakStatement;
-    static char tempChar;
+    static void controll(char &, int &, int &, int &, int &, bool &, Content *); // controlling key inputs and taking action to them.
+    static void deleteNode(int &, int &, Content *);                             // i wrote it to prevent code repeating.
+    static bool breakStatement;                                                  // program break statement.
+    static char tempChar;                                                        // regedit char to controlling 'k' button. -if 'k' pressed twice delete current yl node-
 };
 
 #endif // ACTIONS

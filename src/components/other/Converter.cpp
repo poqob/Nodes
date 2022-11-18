@@ -13,14 +13,13 @@
 
 using namespace std;
 
-Converter::Converter()
-{
-}
+Converter::Converter() {}
 
 Converter::~Converter()
 {
     delete this;
 }
+// int parsing
 void Converter::rowIntParser(string row, SatirListesi *SatirList)
 {
     int firstSpaceLoc = 0;
@@ -57,7 +56,6 @@ void Converter::readingFromFile(Content *content)
     string temp0;
     fstream read;
     // open products.txt file in read mode
-    // read.open("..//data//veriler.txt", ios::in);
     read.open("data/veriler.txt", ios::in);
     // sayıları dosyadan satır satır okumak.
     while (getline(read, temp0))

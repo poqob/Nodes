@@ -6,21 +6,6 @@
  * @06.11.2022
  * @Mustafa BICER mustafa.bicer1@ogr.sakarya.edu.tr
  */
-/*
-#include <iostream>
-#include "components/lists/SatirListesiNode.cpp"
-//#include "components/lists/YoneticiListesiNode.cpp"
-#include "components/other/Converter.cpp"
-#include "components/other/Content.cpp"
-//#include "components/other/StringMethod.cpp"
-#include "components/lists/SatirListesi.cpp"
-#include "components/lists/YoneticiListesi.cpp"
-#include "ui/tabbar/tabBar.cpp"
-#include "ui/listBuilders/YLB.cpp"
-#include "ui/listBuilders/SLB.cpp"
-#include "ui/locationArrow/LocationArrow.cpp"
-#include "components/other/Actions.cpp"
-*/
 #include "../include/list/SatirListesiNode.hpp"
 #include "../include/list/YoneticiListesiNode.hpp"
 #include "../include/other/Converter.hpp"
@@ -39,20 +24,20 @@ int main()
 {
     Converter *converter = new Converter();
     Content *content = new Content();
-    // read data from file.
-    converter->readingFromFile(content);
-    // oredering data
-    content->putInOrder();
-    int page = 1;
-    int selection = 0;
-    int maxSelectionOfCurrentPage = 7; // 0...7-total 8
-    int lastPage = (content->YoneticiList->Count() % 8 == 0 ? 0 : 1) + content->YoneticiList->Count() / 8;
-    bool isLastPage = page >= lastPage ? true : false;
-    TabBar tb = TabBar();
-    YLB yb = YLB(content->YoneticiList, page);
-    LocationArrow la = LocationArrow();
-    SLB sb = SLB();
 
+    converter->readingFromFile(content);                                                                   // read data from file. then convert it to int.
+    content->putInOrder();                                                                                 // oredering data - in Content class we can do some pre-manipulation like ordering~sorting data.
+    int page = 1;                                                                                          // definition of start page
+    int selection = 0;                                                                                     // definition of selection
+    int maxSelectionOfCurrentPage = 7;                                                                     // 0...7-total 8
+    int lastPage = (content->YoneticiList->Count() % 8 == 0 ? 0 : 1) + content->YoneticiList->Count() / 8; // calculating lastpage according to
+    bool isLastPage = page >= lastPage ? true : false;                                                     // testing the page is last page or not.
+    TabBar tb = TabBar();                                                                                  // tabbar
+    YLB yb = YLB(content->YoneticiList, page);                                                             // YLB-yonetici listesi builder
+    LocationArrow la = LocationArrow();                                                                    // location arrow
+    SLB sb = SLB();                                                                                        // satir listesi builder
+
+    // Action::breakStatement controlls the program.-break or continue(not keyword one).
     while (!Actions::breakStatement)
     {
         char ch;
@@ -71,8 +56,8 @@ int main()
         Actions::controll(ch, page, selection, maxSelectionOfCurrentPage, lastPage, isLastPage, content);
     }
 
-    content->~Content();
-    converter->~Converter();
+    content->~Content();     // destructor for Content
+    converter->~Converter(); // destrucor for Converter
     delete content;
     delete converter;
     return 0;

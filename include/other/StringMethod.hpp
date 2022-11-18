@@ -5,7 +5,7 @@ using namespace std;
 
 struct StringMethod
 {
-    static string trim(std::string);
+    static string trim(std::string); // trims string input and returns it back.
 };
 
 #endif // STR_METHODS

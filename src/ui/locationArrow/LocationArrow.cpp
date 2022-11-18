@@ -7,9 +7,9 @@
  * @Mustafa BICER mustafa.bicer1@ogr.sakarya.edu.tr
  */
 #include "../../../include/ui/locationArrow/LocationArrow.hpp"
-LocationArrow::LocationArrow()
-{
-}
+LocationArrow::LocationArrow() {}
+
+// moves and draws location arrow
 void LocationArrow::draw(YLB *y, int wantedSection)
 {
     lunderl = y->lastUnderLine;
@@ -38,6 +38,4 @@ void LocationArrow::draw(YLB *y, int wantedSection)
     std::cout << arrow << std::endl;
 }
 
-LocationArrow::~LocationArrow()
-{
-}
+LocationArrow::~LocationArrow() {}

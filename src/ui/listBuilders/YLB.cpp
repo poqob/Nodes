@@ -127,7 +127,7 @@ string YLB::createNextAdress(int pageNum)
     }
     return output;
 }
-// callculating and creating(in format) avarages of each YoneticiListesiNode~SatirListesi
+// calculating and creating(in format) avarages of each YoneticiListesiNode~SatirListesi
 /*
  *how it works?
  *this method firstly dedects previous line's spaces in order to create boundary of new line's adress areas.
