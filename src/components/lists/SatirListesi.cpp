@@ -120,21 +120,7 @@ bool SatirListesi::find(const int &item)
     }
     return false;
 }
-void SatirListesi::reverse()
-{
-    for (SatirListesiNode *itr = head; itr != NULL;)
-    {
-        SatirListesiNode *tmp = itr->next;
-        itr->next = itr->prev;
-        itr->prev = tmp;
-        if (tmp == NULL)
-        {
-            head = itr;
-            break;
-        }
-        itr = tmp;
-    }
-}
+
 // siralama metodu-kucukten buyuge
 void SatirListesi::swap(int index1, int index2)
 {
@@ -151,7 +137,7 @@ void SatirListesi::swap(int index1, int index2)
     crnt1->data = crnt2->data;
     crnt2->data = tmp->data;
     // cout << crnt1->data << " " << crnt2->data << endl;
-    delete tmp, crnt1, crnt2;
+    delete tmp;
 }
 const int &SatirListesi::elementAt(int index)
 {

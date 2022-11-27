@@ -21,12 +21,12 @@ Content::~Content()
     // clearing-freed satir lists
     for (int i = 0; i < YoneticiList->Count(); i++)
     {
-        YoneticiList->elementAt(i).data->~SatirListesi();
+        // YoneticiList->elementAt(i).data->~SatirListesi();
+        delete YoneticiList->elementAt(i).data;
     }
-    SatirList->~SatirListesi();
     delete YoneticiList;
     delete SatirList;
-    delete this;
+    std::cout << "content deletion succesful" << std::endl; // silme isleminin hatasiz gerceklestigini anlamak icin yazdim.
 }
 
 // works after one line readed from veriler.txt

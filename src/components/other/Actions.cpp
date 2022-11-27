@@ -143,26 +143,41 @@ void Actions::controll(char &ch, int &page, int &selection, int &maxSelectionOfC
                 Actions::breakStatement = !Actions::breakStatement;
             }
         }
-        // delete yoneticiListesiNode from yoneticiListesi
+        // delete yoneticiListesiNode with pressing p, deletion possibilities
         if (ch == 'p')
         {
             int index = (page - 1) * 8 + selection;
             YoneticiListesiNode yln = content->YoneticiList->elementAt(index);
-            if (yln.next == NULL && selection != 0)
+            if (yln.prev == NULL) // head of list
             {
                 deleteNode(page, selection, content);
-                selection -= 1;
             }
-            else if (yln.next == NULL && selection == 0 && yln.prev != NULL)
+            else if (yln.next == NULL) // end of list
+            {
+
+                if (yln.prev != NULL && selection != 0)
+                {
+                    deleteNode(page, selection, content);
+                    selection -= 1;
+                }
+                else if (yln.prev != NULL && selection == 0)
+                {
+                    deleteNode(page, selection, content);
+                    page -= 1;
+                    selection = 7;
+                }
+                else if (yln.prev == NULL)
+                {
+                }
+            }
+            else if (yln.next == NULL && yln.prev != NULL && selection == 0)
             {
                 deleteNode(page, selection, content);
-                // selection -= 1;
                 page -= 1;
             }
-            else if (yln.next == NULL && selection == maxSelectionOfCurrentPage) // BURADA kaldık UYKUM geldi
+            else if (yln.next == NULL && yln.prev == NULL && selection == 0)
             {
                 deleteNode(page, selection, content);
-                page -= 1;
             }
             else
             {
@@ -177,14 +192,15 @@ void Actions::controll(char &ch, int &page, int &selection, int &maxSelectionOfC
                 Actions::breakStatement = !Actions::breakStatement;
             }
         }
+        if (ch == 'q') // exit program.
+            Actions::breakStatement = !Actions::breakStatement;
     }
-
     Actions::tempChar = ch;
 }
 
 void Actions::deleteNode(int &page, int &selection, Content *content)
 {
     int index = (page - 1) * 8 + selection;
-    content->YoneticiList->elementAt(index).data->~SatirListesi();
+    delete content->YoneticiList->elementAt(index).data;
     content->YoneticiList->removeAt(index);
 }

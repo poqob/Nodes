@@ -17,7 +17,6 @@ Converter::Converter() {}
 
 Converter::~Converter()
 {
-    delete this;
 }
 // int parsing
 void Converter::rowIntParser(string row, SatirListesi *SatirList)
@@ -47,7 +46,6 @@ void Converter::rowIntParser(string row, SatirListesi *SatirList)
     }
     catch (const std::exception &e)
     {
-        // std::cerr << e.what() << '\n';
     }
 }
 
