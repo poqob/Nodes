@@ -166,14 +166,6 @@ void Actions::controll(char &ch, int &page, int &selection, int &maxSelectionOfC
                     page -= 1;
                     selection = 7;
                 }
-                else if (yln.prev == NULL)
-                {
-                }
-            }
-            else if (yln.next == NULL && yln.prev != NULL && selection == 0)
-            {
-                deleteNode(page, selection, content);
-                page -= 1;
             }
             else if (yln.next == NULL && yln.prev == NULL && selection == 0)
             {
@@ -184,7 +176,7 @@ void Actions::controll(char &ch, int &page, int &selection, int &maxSelectionOfC
                 deleteNode(page, selection, content);
             }
 
-            // Runing Destructor.
+            // Runing Destructor if YoneticiList empty.
             if (content->YoneticiList->isEmpty())
             {
                 system("cls");

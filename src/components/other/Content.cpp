@@ -9,7 +9,7 @@
 #include "../../../include/other/Content.hpp"
 #include <iostream>
 #include <fstream>
-
+#include "iomanip"
 Content::Content()
 {
     YoneticiList = new YoneticiListesi();
@@ -21,12 +21,14 @@ Content::~Content()
     // clearing-freed satir lists
     for (int i = 0; i < YoneticiList->Count(); i++)
     {
-        // YoneticiList->elementAt(i).data->~SatirListesi();
         delete YoneticiList->elementAt(i).data;
     }
-    delete YoneticiList;
-    delete SatirList;
-    std::cout << "content deletion succesful" << std::endl; // silme isleminin hatasiz gerceklestigini anlamak icin yazdim.
+    delete YoneticiList; // calls destructor for yonetici list
+    delete SatirList;    // calls destructor for satir list
+    system("cls");
+
+    std::cout << "\ncontent deletion succesful\n"; // silme isleminin hatasiz gerceklestigini anlamak icin yazdim.
+    std::cout << std::setw(20) << "Mustafa BICER..poqob\n\n\n\n\n";
 }
 
 // works after one line readed from veriler.txt

@@ -111,15 +111,6 @@ void SatirListesi::removeAt(int index)
     size--;
     delete del;
 }
-bool SatirListesi::find(const int &item)
-{
-    for (SatirListesiNode *itr = head; itr != NULL; itr = itr->next)
-    {
-        if (itr->data == item)
-            return true;
-    }
-    return false;
-}
 
 // siralama metodu-kucukten buyuge
 void SatirListesi::swap(int index1, int index2)
